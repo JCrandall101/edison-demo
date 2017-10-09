@@ -1,0 +1,30 @@
+<div class="divSpacer"></div>
+<div style="display:inline-block;vertical-align:top;padding:0px 20px;">
+  <h2>Filters:</h2>
+  <div style="padding:0px 10px;">
+    <div>
+      <h3>Customer Gender</h3>
+      <div style="padding-left:10px;">
+        <p-checkbox name="genders" value="Male" label="Male" [(ngModel)]="selectedGenders" inputId="Male" (onChange)="processCheckBoxs($event)"></p-checkbox>
+        <div class="divSmallSpacer"></div>
+        <p-checkbox name="genders" value="Female" label="Female" [(ngModel)]="selectedGenders" inputId="Female" (onChange)="processCheckBoxs($event)"></p-checkbox>
+      </div>
+    </div>
+    <div>
+      <h3>Types</h3>
+      <div style="padding-left:10px;">
+        <p-checkbox name="types" value="SHS" label="SHS" [(ngModel)]="selectedTypes" inputId="SHS" (onChange)="processTypeCheckBoxs($event)"></p-checkbox>
+        <div class="divSmallSpacer"></div>
+        <p-checkbox name="types" value="ESS Microgrid" label="ESS Microgrid" [(ngModel)]="selectedTypes" inputId="ESS Microgrid" (onChange)="processTypeCheckBoxs($event)"></p-checkbox>
+        <div class="divSmallSpacer"></div>
+        <p-checkbox name="types" value="Microgrid" label="Microgrid" [(ngModel)]="selectedTypes" inputId="Microgrid" (onChange)="processTypeCheckBoxs($event)"></p-checkbox>
+      </div>
+    </div>
+  </div>
+</div>
+<div style="display:inline-block">
+  <app-d3 #zambiaChart id="d3Zambia" *ngIf="chartData" [data]="chartData" [name]="'d3Zambia'"></app-d3>
+</div>
+<div style="display:inline-block">
+  <app-d3 #zambiaChart id="d3Zambia" *ngIf="chartData2" [data]="chartData2" [name]="'d3Zambia'"></app-d3>
+</div>
