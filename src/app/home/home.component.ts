@@ -17,5 +17,12 @@ export class HomeComponent implements OnInit {
 
   }
 
+  mouseOver(){
+    console.log("Mouse Over");
+  }
+  mouseOut(){
+    console.log("Mouse Out");
+  }
+
 
 }
