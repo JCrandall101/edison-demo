@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule,Routes} from '@angular/router';
 
 import {AdminComponent} from './admin.component';
+import {DataManagementComponent} from './data-management/data-management.component';
 
 const appRoutes: Routes = [
   {
@@ -9,25 +10,9 @@ const appRoutes: Routes = [
     component: AdminComponent
   },
   {
-    path: 'Admin',
-    component: AdminComponent
-  }//,
-  // {
-  //   path: 'Credit-Toolkit',
-  //   loadChildren: 'app/credit-toolkit/credit-toolkit.module#CreditToolkitModule'
-  // },
-  // {
-  //   path: 'Plotly-Demo',
-  //   component: PlotlyDemoComponent
-  // },
-  // {
-  //   path: 'cdp-home',
-  //   component: CdpHomeComponent
-  // },
-  // {
-  //   path: 'charts-demo',
-  //   component: ChartsDemoComponent
-  // }
+    path: 'data-management',
+    component: DataManagementComponent
+  }
 ];
 
 @NgModule({

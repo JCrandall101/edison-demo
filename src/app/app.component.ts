@@ -26,7 +26,16 @@ export class AppComponent implements OnInit, OnChanges, AfterViewChecked {
   adminItem: MenuItem = {
     label: 'Admin',
     icon: 'fa-database',
-    command: (click) => {this.router.navigate(['admin']);}
+    items:[
+      {
+        label: 'User Management',
+        command: (click) => {this.router.navigate(['admin']);}
+      },
+      {
+        label: 'Data Management',
+        command: (click) => {this.router.navigate(['admin/data-management']);}
+      }
+    ]
   };
 
   constructor(private route: ActivatedRoute,private router:Router,private messageService: MessageService,private authService:AuthService){}
@@ -117,5 +126,18 @@ export class AppComponent implements OnInit, OnChanges, AfterViewChecked {
       this.items.splice(index);
     }
     this.router.navigate(['/home']);
+  }
+
+  cookieCheck(){
+    if(typeof(Storage) !== "undefined"){
+      if (sessionStorage.clickcount) {
+                    sessionStorage.clickcount = Number(sessionStorage.clickcount)+1;
+                } else {
+                    sessionStorage.clickcount = 1;
+                }
+                document.getElementById("result").innerHTML = "You have clicked the button " + sessionStorage.clickcount + " time(s) in this session.";
+            } else {
+                document.getElementById("result").innerHTML = "Sorry, your browser does not support web storage...";
+    }
   }
 }

@@ -7,6 +7,20 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <!-- <script>
+    function cookieCheck() {
+        if(typeof(Storage) !== "undefined") {
+            if (sessionStorage.clickcount) {
+                sessionStorage.clickcount = Number(sessionStorage.clickcount)+1;
+            } else {
+                sessionStorage.clickcount = 1;
+            }
+            document.getElementById("result").innerHTML = "You have clicked the button " + sessionStorage.clickcount + " time(s) in this session.";
+        } else {
+            document.getElementById("result").innerHTML = "Sorry, your browser does not support web storage...";
+        }
+    }
+  </script> -->
 </head>
 <body>
   <div style="padding:0px 0px 10px 10px;">
@@ -14,5 +28,10 @@
     <h1 style="margin:0px 10px;display:inline-block;vertical-align:top;font-size:37px;color:black;padding:0px;font-family:sans-serif;">- EDISON v1.0</h1>
   </div>
   <app-root></app-root>
+  <!-- <div id="cookieLawDiv" style="position:fixed;width:100%;left:0;bottom:0;min-height:40px;background:grey;">
+    <div id="result"></div>
+    <p>Cookie Law Infor</p>
+    <button onclick="cookieCheck()" type="button">Click me!</button>
+  </div> -->
 </body>
 </html>
