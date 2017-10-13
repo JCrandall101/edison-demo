@@ -29,7 +29,7 @@ export class AppComponent implements OnInit, OnChanges, AfterViewChecked {
     items:[
       {
         label: 'User Management',
-        command: (click) => {this.router.navigate(['admin']);}
+        command: (click) => {this.router.navigate(['admin/user-management']);}
       },
       {
         label: 'Data Management',

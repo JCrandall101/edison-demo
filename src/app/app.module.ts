@@ -10,9 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import {MenubarModule} from 'primeng/components/menubar/menubar';
 import {GrowlModule} from 'primeng/primeng';
 import {MessageService} from 'primeng/components/common/messageservice';
-import {ButtonModule} from 'primeng/primeng';
 import { DropdownModule } from 'primeng/components/dropdown/dropdown';
-import {DataTableModule} from 'primeng/components/datatable/datatable';
 import {ChartModule} from 'primeng/primeng';
 
 
@@ -29,7 +27,7 @@ import { AuthService } from './auth.service';
     AppComponent, HomeComponent, LoginComponent
   ],
   imports: [
-    BrowserModule,HttpModule,BrowserAnimationsModule,AppRoutingModule,MenubarModule,GrowlModule,ButtonModule,DropdownModule,DataTableModule,ChartModule,
+    BrowserModule,HttpModule,BrowserAnimationsModule,AppRoutingModule,MenubarModule,GrowlModule,DropdownModule,ChartModule,
     SharedModule.forRoot()
   ],
   providers: [MessageService,AppService,AuthGuard,AuthService],

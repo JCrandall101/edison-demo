@@ -3,6 +3,7 @@ import {RouterModule,Routes} from '@angular/router';
 
 import {AdminComponent} from './admin.component';
 import {DataManagementComponent} from './data-management/data-management.component';
+import {UserManagementComponent} from './user-management/user-management.component';
 
 const appRoutes: Routes = [
   {
@@ -12,6 +13,10 @@ const appRoutes: Routes = [
   {
     path: 'data-management',
     component: DataManagementComponent
+  },
+  {
+    path: 'user-management',
+    component: UserManagementComponent
   }
 ];
 

@@ -67,3 +67,19 @@ svg.chart-content{
     /*padding-top: 38%;*/
     position: relative;
 }
+
+.input-data{
+  margin: 5px 0px;
+}
+.input-data>span{
+  display: inline-block;
+  width: 40%;
+  border-bottom: 1px dotted black;
+}
+.input-data>input{
+  display: inline-block;
+  width: calc(60% - 5px);
+}
+.ui-datatable-data td{
+  text-align:center;
+}
