@@ -26,7 +26,16 @@ export class AppComponent implements OnInit, OnChanges, AfterViewChecked {
   adminItem: MenuItem = {
     label: 'Admin',
     icon: 'fa-database',
-    command: (click) => {this.router.navigate(['admin']);}
+    items:[
+      {
+        label: 'User Management',
+        command: (click) => {this.router.navigate(['admin']);}
+      },
+      {
+        label: 'Data Management',
+        command: (click) => {this.router.navigate(['admin']);}
+      }
+    ]
   };
 
   constructor(private route: ActivatedRoute,private router:Router,private messageService: MessageService,private authService:AuthService){}
