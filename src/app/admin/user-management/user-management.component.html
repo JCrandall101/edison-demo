@@ -1,5 +1,7 @@
 <h3>User Management</h3>
-<p-dataTable [value]="users">
+<button pButton type="button" label="Add User" (click)="displayAddUser()"></button>
+<div class="divSmallSpacer"></div>
+<p-dataTable *ngIf="visible" [value]="users">
   <p-column header="Edit" [style]="{'width':'40px'}">
       <ng-template let-user="rowData" pTemplate="body">
           <button type="button" pButton (click)="editUser(user)" icon="fa-pencil-square-o"></button>
@@ -16,7 +18,7 @@
     </ng-template>
   </p-column>
 </p-dataTable>
-<p-dialog header="Edit User" [(visible)]="display" modal="modal" width="500">
+<p-dialog header="Edit User" [(visible)]="displayEdit" modal="modal" width="500">
   <div *ngIf="selectedUser">
     <div class="input-data">
       <span>First Name</span>
@@ -41,5 +43,31 @@
     <button pButton type="button" label="Save" (click)="saveUser()"></button>
     <button *ngIf="selectedUser.isActive" pButton type="button" label="Deactivate" (click)="deactivateUser()"></button>
     <button *ngIf="!selectedUser.isActive" pButton type="button" label="Activate" (click)="deactivateUser()"></button>
+  </div>
+</p-dialog>
+<p-dialog header="Add User" [(visible)]="displayAdd" modal="modal" width="500">
+  <div *ngIf="newUser">
+    <div class="input-data">
+      <span>First Name</span>
+      <input type="text" [(ngModel)]="newUser.firstName">
+    </div>
+    <div class="input-data">
+      <span>Last Name</span>
+      <input type="text" [(ngModel)]="newUser.lastName">
+    </div>
+    <div class="input-data">
+      <span>Email / User ID</span>
+      <input type="text" [(ngModel)]="newUser.email">
+    </div>
+    <div class="input-data">
+      <span>Phone Number</span>
+      <input type="text" [(ngModel)]="newUser.phoneNumber">
+    </div>
+    <div class="input-data">
+      <span>Password</span>
+      <input type="text" [(ngModel)]="newUser.password">
+    </div>
+    <button pButton type="button" label="Save" (click)="addUser()"></button>
+    <button pButton type="button" label="Cancel" (click)="cancelUser()"></button>
   </div>
 </p-dialog>

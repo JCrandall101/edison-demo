@@ -49,26 +49,50 @@ export class UserManagementComponent implements OnInit {
       isActive:true
     }
   ];
-  display:boolean = false;
+  displayAdd:boolean = false;
+  displayEdit:boolean = false;
   selectedUser:User;
+  newUser:User={isActive:true};
+  visible:boolean = true;
 
   constructor() { }
 
   ngOnInit() {
   }
 
+
+  addUser(){
+    this.displayAdd = false;
+    this.users.push(this.newUser);
+    this.newUser = {isActive:true};
+    this.updateVisibility();
+  }
+  cancelUser(){
+    this.newUser = {};
+    this.displayAdd = false;
+  }
+  displayAddUser(){
+    this.displayAdd = true;
+  }
+
   editUser(user:User){
     console.log(user);
     this.selectedUser = user;
-    this.display = true;
+    this.displayEdit = true;
   }
 
   saveUser(){
-    this.display = false;
+    this.displayEdit = false;
   }
   deactivateUser(){
     this.selectedUser.isActive = !this.selectedUser.isActive;
-    this.display = false;
+    this.displayEdit = false;
+  }
+
+  //PrimeNG was having issue with Updating table content. Use this to refresh table
+  updateVisibility(): void {
+    this.visible = false;
+    setTimeout(() => this.visible = true, 0);
   }
 
 }
