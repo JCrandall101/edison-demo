@@ -2,9 +2,14 @@
 <button pButton type="button" label="Add User" (click)="displayAddUser()"></button>
 <div class="divSmallSpacer"></div>
 <p-dataTable *ngIf="visible" [value]="users">
-  <p-column header="Edit" [style]="{'width':'40px'}">
+  <p-column header="Edit" [style]="{'width':'42px'}">
       <ng-template let-user="rowData" pTemplate="body">
           <button type="button" pButton (click)="editUser(user)" icon="fa-pencil-square-o"></button>
+      </ng-template>
+  </p-column>
+  <p-column header="Delete" [style]="{'width':'42px'}">
+      <ng-template let-user="rowData" pTemplate="body">
+          <button type="button" pButton (click)="deleteUser(user)" icon="fa-trash"></button>
       </ng-template>
   </p-column>
   <p-column field="firstName" header="First Name" sortable="true"></p-column>
@@ -12,6 +17,11 @@
   <p-column field="email" header="Email / User ID" sortable="true"></p-column>
   <p-column field="phoneNumber" header="Phone Number" sortable="true"></p-column>
   <p-column field="password" header="Password" sortable="true"></p-column>
+  <p-column field="isAdmin" header="Admin" sortable="true">
+    <ng-template let-user="rowData" pTemplate="body">
+        <span>{{(user.isAdmin) ? 'Yes' : 'No'}}</span>
+    </ng-template>
+  </p-column>
   <p-column field="isActive" header="Active" sortable="true">
     <ng-template let-user="rowData" pTemplate="body">
         <span>{{(user.isActive) ? 'Yes' : 'No'}}</span>
@@ -40,6 +50,10 @@
       <span>Password</span>
       <input type="text" [(ngModel)]="selectedUser.password">
     </div>
+    <div class="input-data">
+      <span>Password</span>
+      <input type="checkbox" [(ngModel)]="selectedUser.isAdmin" style="width:calc(60% - 10px);">
+    </div>
     <button pButton type="button" label="Save" (click)="saveUser()"></button>
     <button *ngIf="selectedUser.isActive" pButton type="button" label="Deactivate" (click)="deactivateUser()"></button>
     <button *ngIf="!selectedUser.isActive" pButton type="button" label="Activate" (click)="deactivateUser()"></button>
@@ -67,7 +81,12 @@
       <span>Password</span>
       <input type="text" [(ngModel)]="newUser.password">
     </div>
+    <div class="input-data">
+      <span>Password</span>
+      <input type="checkbox" [(ngModel)]="newUser.isAdmin" style="width:calc(60% - 10px);">
+    </div>
     <button pButton type="button" label="Save" (click)="addUser()"></button>
     <button pButton type="button" label="Cancel" (click)="cancelUser()"></button>
   </div>
 </p-dialog>
+<p-confirmDialog></p-confirmDialog>

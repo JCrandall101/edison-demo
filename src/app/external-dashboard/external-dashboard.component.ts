@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import {Router,Params,ActivatedRoute} from '@angular/router';
 import {AppService} from '../app.service';
 import {D3Component} from '../shared/d3/d3.component';
 import * as _ from 'underscore';
+import {MenuItem} from 'primeng/primeng';
 
 @Component({
   selector: 'app-external-dashboard',
@@ -10,6 +12,8 @@ import * as _ from 'underscore';
   styleUrls: ['./external-dashboard.component.css']
 })
 export class ExternalDashboardComponent implements OnInit {
+  items:MenuItem[];
+
   @ViewChild('zambiaChart') private zambiaChart: D3Component;
   private chartData: Array<any> =
   [
@@ -29,9 +33,17 @@ export class ExternalDashboardComponent implements OnInit {
   selectedGenders=['Male','Female'];
   selectedTypes = ['SHS','ESS Microgrid','Microgrid'];
 
-  constructor(private appService:AppService) { }
+  constructor(private appService:AppService, private router:Router) { }
 
   ngOnInit() {
+    this.items = [
+            {label: 'Energy Service Subscriptions', icon: 'fa-bar-chart'},
+            {label: 'Households Connected', icon: 'fa-calendar'},//command: (click) => {this.router.navigate(['home']);}},
+            {label: 'Beneficiaries', icon: 'fa-book'},
+            {label: 'Financial Leverage of BGFZ', icon: 'fa-support'},
+            {label: 'Tones of CO2 Mitigated', icon: 'fa-twitter'}
+        ];
+
     this.rawData = this.appService.getZambiaData();
 
     this.generateData();

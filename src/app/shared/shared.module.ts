@@ -9,13 +9,15 @@ import {CheckboxModule} from 'primeng/primeng';
 import {DataTableModule} from 'primeng/components/datatable/datatable';
 import {ButtonModule} from 'primeng/primeng';
 import {DialogModule} from 'primeng/primeng';
+import {TabMenuModule} from 'primeng/primeng';
+import {MenuModule} from 'primeng/primeng';
 import {FileUploadModule} from 'primeng/primeng';
 //import {MessagingService} from './services/messaging.service';
 
 @NgModule({
-  imports: [CommonModule,CheckboxModule,FormsModule,DataTableModule,ButtonModule,DialogModule,FileUploadModule],
+  imports: [CommonModule,CheckboxModule,FormsModule,DataTableModule,ButtonModule,DialogModule,TabMenuModule,MenuModule,FileUploadModule],
   declarations: [D3Component],
-  exports: [CommonModule,D3Component,CheckboxModule,FormsModule,DataTableModule,ButtonModule,DialogModule,FileUploadModule]
+  exports: [CommonModule,D3Component,CheckboxModule,FormsModule,DataTableModule,ButtonModule,DialogModule,TabMenuModule,MenuModule,FileUploadModule]
 })
 export class SharedModule {
   static forRoot(): ModuleWithProviders {

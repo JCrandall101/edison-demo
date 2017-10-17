@@ -98,11 +98,11 @@ export class AppComponent implements OnInit, OnChanges, AfterViewChecked {
     }
     if(!this.authService.isLoggedIn && _.contains(this.items,this.adminItem)){
       let index: number = this.items.indexOf(this.adminItem);
-      this.items.splice(index);
+      this.items.splice(index,1);
     }
     if(!this.authService.isLoggedIn && _.contains(this.items,this.internalDashItem)){
       let index: number = this.items.indexOf(this.internalDashItem);
-      this.items.splice(index);
+      this.items.splice(index,1);
     }
   }
 
@@ -119,11 +119,11 @@ export class AppComponent implements OnInit, OnChanges, AfterViewChecked {
     this.authService.logout();
     if(!this.authService.isLoggedIn && _.contains(this.items,this.adminItem)){
       let index: number = this.items.indexOf(this.adminItem);
-      this.items.splice(index);
+      this.items.splice(index,1);
     }
     if(!this.authService.isLoggedIn && _.contains(this.items,this.internalDashItem)){
       let index: number = this.items.indexOf(this.internalDashItem);
-      this.items.splice(index);
+      this.items.splice(index,1);
     }
     this.router.navigate(['/home']);
   }
