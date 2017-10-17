@@ -7,10 +7,13 @@ import {AdminRoutingModule} from './admin-routing.module';
 import { DataManagementComponent } from './data-management/data-management.component';
 import { UserManagementComponent } from './user-management/user-management.component';
 
+import {ConfirmDialogModule,ConfirmationService} from 'primeng/primeng';
+
 @NgModule({
   imports: [
-    CommonModule,AdminRoutingModule,SharedModule.forRoot()
+    CommonModule,AdminRoutingModule,SharedModule.forRoot(),ConfirmDialogModule
   ],
-  declarations: [AdminComponent, DataManagementComponent, UserManagementComponent]
+  declarations: [AdminComponent, DataManagementComponent, UserManagementComponent],
+  providers: [ConfirmationService]
 })
 export class AdminModule { }

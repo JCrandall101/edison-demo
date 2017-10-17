@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from '../../shared/class/user.obj';
+import * as _ from 'underscore';
+
+import {ConfirmationService} from 'primeng/primeng';
 
 @Component({
   selector: 'app-user-management',
   templateUrl: './user-management.component.html',
-  styleUrls: ['./user-management.component.css']
+  styleUrls: ['./user-management.component.css'],
+  providers: [ConfirmationService]
 })
 export class UserManagementComponent implements OnInit {
   users:User[] = [
@@ -14,6 +18,7 @@ export class UserManagementComponent implements OnInit {
       email:'crandall@ficonsulting.com',
       phoneNumber:'301-922-8804',
       password:'XXXX',
+      isAdmin:true,
       isActive:true
     },
     {
@@ -22,6 +27,7 @@ export class UserManagementComponent implements OnInit {
       email:'hill@ficonsulting.com',
       phoneNumber:'###-###-####',
       password:'XXXX',
+      isAdmin:false,
       isActive:false
     },
     {
@@ -30,6 +36,7 @@ export class UserManagementComponent implements OnInit {
       email:'sinha@ficonsulting.com',
       phoneNumber:'xxx-xxx-xxxx',
       password:'XXXX',
+      isAdmin:false,
       isActive:true
     },
     {
@@ -38,6 +45,7 @@ export class UserManagementComponent implements OnInit {
       email:'john.tkacik@reeep.org',
       phoneNumber:'xxx-xxx-xxxx',
       password:'XXXX',
+      isAdmin:true,
       isActive:true
     },
     {
@@ -46,16 +54,17 @@ export class UserManagementComponent implements OnInit {
       email:'merja.laakso@reeep.org',
       phoneNumber:'xxx-xxx-xxxx',
       password:'XXXX',
+      isAdmin:true,
       isActive:true
     }
   ];
   displayAdd:boolean = false;
   displayEdit:boolean = false;
   selectedUser:User;
-  newUser:User={isActive:true};
+  newUser:User={isAdmin:false,isActive:true};
   visible:boolean = true;
 
-  constructor() { }
+  constructor(private confirmationService:ConfirmationService) { }
 
   ngOnInit() {
   }
@@ -64,7 +73,7 @@ export class UserManagementComponent implements OnInit {
   addUser(){
     this.displayAdd = false;
     this.users.push(this.newUser);
-    this.newUser = {isActive:true};
+    this.newUser = {isAdmin:false,isActive:true};
     this.updateVisibility();
   }
   cancelUser(){
@@ -79,6 +88,27 @@ export class UserManagementComponent implements OnInit {
     console.log(user);
     this.selectedUser = user;
     this.displayEdit = true;
+  }
+
+  deleteUser(user:User){
+    this.confirmationService.confirm({
+            message: 'Do you want to delete this record?',
+            header: 'Delete Confirmation',
+            icon: 'fa fa-trash',
+            accept: () => {
+              if(_.contains(this.users,user)){
+                let index: number = this.users.indexOf(user);
+                this.users.splice(index,1);
+                this.updateVisibility();
+              }
+            },
+            reject: () => {
+
+            }
+        });
+
+    console.log(this.users);
+
   }
 
   saveUser(){
