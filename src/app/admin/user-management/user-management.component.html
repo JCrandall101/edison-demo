@@ -52,7 +52,7 @@
     </div>
     <div class="input-data">
       <span>Password</span>
-      <input type="checkbox" [(ngModel)]="selectedUser.isAdmin" style="width:calc(60% - 10px);">
+      <input type="checkbox" [(ngModel)]="selectedUser.isAdmin" style="width:15px;">
     </div>
     <button pButton type="button" label="Save" (click)="saveUser()"></button>
     <button *ngIf="selectedUser.isActive" pButton type="button" label="Deactivate" (click)="deactivateUser()"></button>
@@ -83,7 +83,7 @@
     </div>
     <div class="input-data">
       <span>Password</span>
-      <input type="checkbox" [(ngModel)]="newUser.isAdmin" style="width:calc(60% - 10px);">
+      <input type="checkbox" [(ngModel)]="newUser.isAdmin" style="width:15px;">
     </div>
     <button pButton type="button" label="Save" (click)="addUser()"></button>
     <button pButton type="button" label="Cancel" (click)="cancelUser()"></button>
