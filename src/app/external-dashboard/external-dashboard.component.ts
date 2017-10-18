@@ -13,6 +13,8 @@ import {MenuItem} from 'primeng/primeng';
 })
 export class ExternalDashboardComponent implements OnInit {
   items:MenuItem[];
+  donutData:any;
+  donutOptions:any;
 
   @ViewChild('zambiaChart') private zambiaChart: D3Component;
   private chartData: Array<any> =
@@ -33,7 +35,9 @@ export class ExternalDashboardComponent implements OnInit {
   selectedGenders=['Male','Female'];
   selectedTypes = ['SHS','ESS Microgrid','Microgrid'];
 
-  constructor(private appService:AppService, private router:Router) { }
+  constructor(private appService:AppService, private router:Router) {
+
+  }
 
   ngOnInit() {
     this.items = [
@@ -47,6 +51,10 @@ export class ExternalDashboardComponent implements OnInit {
     this.rawData = this.appService.getZambiaData();
 
     this.generateData();
+
+    this.donutOptions = {
+
+    }
   }
 
   generateData() {
@@ -61,6 +69,36 @@ export class ExternalDashboardComponent implements OnInit {
     _.each(this.chartData,function(val){
       val.value = data[val.name];
     })
+
+    this.donutData = {
+            labels: _.pluck(this.chartData,'name'),
+            datasets: [
+                {
+                    data: _.pluck(this.chartData,'value'),
+                    backgroundColor: [
+                      "#4D4D4D",
+                      "#5DA5DA",
+                      "#FAA43A",
+                      "#60BD68",
+                      "#F17CB0",
+                      "#B2912F",
+                      "#B276B2",
+                      "#DECF3F",
+                      "#F15854"
+                    ],
+                    hoverBackgroundColor: [
+                      "#4D4D4D",
+                      "#5DA5DA",
+                      "#FAA43A",
+                      "#60BD68",
+                      "#F17CB0",
+                      "#B2912F",
+                      "#B276B2",
+                      "#DECF3F",
+                      "#F15854"
+                    ]
+                }]
+            };
     //console.log(this.chartData);
     // this.chartData = [];
     // _.each(data,function(val,key){

@@ -13,12 +13,13 @@ import {TabMenuModule} from 'primeng/primeng';
 import {MenuModule} from 'primeng/primeng';
 import {FileUploadModule} from 'primeng/primeng';
 import { DropdownModule } from 'primeng/components/dropdown/dropdown';
+import {ChartModule} from 'primeng/primeng';
 //import {MessagingService} from './services/messaging.service';
 
 @NgModule({
-  imports: [CommonModule,CheckboxModule,FormsModule,DataTableModule,ButtonModule,DialogModule,TabMenuModule,MenuModule,FileUploadModule,DropdownModule],
+  imports: [CommonModule,CheckboxModule,FormsModule,DataTableModule,ButtonModule,DialogModule,TabMenuModule,MenuModule,FileUploadModule,DropdownModule,ChartModule],
   declarations: [D3Component],
-  exports: [CommonModule,D3Component,CheckboxModule,FormsModule,DataTableModule,ButtonModule,DialogModule,TabMenuModule,MenuModule,FileUploadModule,DropdownModule]
+  exports: [CommonModule,D3Component,CheckboxModule,FormsModule,DataTableModule,ButtonModule,DialogModule,TabMenuModule,MenuModule,FileUploadModule,DropdownModule,ChartModule]
 })
 export class SharedModule {
   static forRoot(): ModuleWithProviders {

@@ -28,5 +28,6 @@
   <app-d3 #zambiaChart id="d3Zambia" *ngIf="chartData" [data]="chartData" [name]="'d3Zambia'"></app-d3>
 </div>
 <div style="display:inline-block">
-  <app-d3 #zambiaChart id="d3Zambia" *ngIf="chartData2" [data]="chartData2" [name]="'d3Zambia'"></app-d3>
+  <!-- <app-d3 #zambiaChart id="d3Zambia" *ngIf="chartData2" [data]="chartData2" [name]="'d3Zambia'"></app-d3> -->
+  <p-chart type="doughnut" [data]="donutData" [options]="donutOptions" [width]="550" [height]="550"></p-chart>
 </div>
