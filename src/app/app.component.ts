@@ -32,6 +32,10 @@ export class AppComponent implements OnInit, OnChanges, AfterViewChecked {
         command: (click) => {this.router.navigate(['admin/user-management']);}
       },
       {
+        label: 'ESP Management',
+        command: (click) => {this.router.navigate(['admin/esp-management'])}
+      },
+      {
         label: 'Data Management',
         command: (click) => {this.router.navigate(['admin/data-management']);}
       }

@@ -1,0 +1,86 @@
+<h3>Energy Service Provider (ESP) Management</h3>
+<button pButton type="button" label="Add ESP" (click)="displayAddEsp()"></button>
+<div class="divSmallSpacer"></div>
+<p-dataTable *ngIf="visible" [value]="esps">
+  <p-column header="Edit" [style]="{'width':'42px'}">
+      <ng-template let-esp="rowData" pTemplate="body">
+          <button type="button" pButton (click)="editEsp(esp)" icon="fa-pencil-square-o"></button>
+      </ng-template>
+  </p-column>
+  <p-column header="Delete" [style]="{'width':'42px'}">
+      <ng-template let-esp="rowData" pTemplate="body">
+          <button type="button" pButton (click)="deleteEsp(esp)" icon="fa-trash"></button>
+      </ng-template>
+  </p-column>
+  <p-column field="espId" header="ESP ID" sortable="true"></p-column>
+  <p-column field="espName" header="ESP Name" sortable="true"></p-column>
+  <p-column field="apiToken" header="API Token" sortable="true"></p-column>
+  <p-column field="essTarget" header="ESS Target" sortable="true"></p-column>
+  <p-column field="vfmTarget" header="VFM Tarket" sortable="true"></p-column>
+  <p-column field="isActive" header="Active" sortable="true">
+    <ng-template let-esp="rowData" pTemplate="body">
+        <span>{{(esp.isActive) ? 'Yes' : 'No'}}</span>
+    </ng-template>
+  </p-column>
+</p-dataTable>
+<p-dialog header="Edit ESP" [(visible)]="displayEdit" modal="modal" width="500">
+  <div *ngIf="selectedEsp">
+    <div class="input-data">
+      <span>ESP ID</span>
+      <!-- <input type="text" [(ngModel)]="selectedEsp.espId"> -->
+      <div style="display:inline-block;width:calc(60% - 5px);">
+        <span>{{selectedEsp.espId}}</span>
+      </div>
+    </div>
+    <div class="input-data">
+      <span>Name</span>
+      <input type="text" [(ngModel)]="selectedEsp.espName">
+    </div>
+    <div class="input-data">
+      <span>Token</span>
+      <!-- <input type="text" [(ngModel)]="selectedEsp.apiToken"> -->
+      <div style="display:inline-block;width:calc(60% - 5px);">
+        <span>{{selectedEsp.apiToken}}</span>
+        <button pButton type="button" label="Regenerate" style="float:right;"></button>
+      </div>
+    </div>
+    <div class="input-data">
+      <span>ESS Target</span>
+      <input type="text" [(ngModel)]="selectedEsp.essTarget">
+    </div>
+    <div class="input-data">
+      <span>VFM Target</span>
+      <input type="text" [(ngModel)]="selectedEsp.vfmTarget">
+    </div>
+    <button pButton type="button" label="Save" (click)="saveEsp()"></button>
+    <button *ngIf="selectedEsp.isActive" pButton type="button" label="Deactivate" (click)="deactivateEsp()"></button>
+    <button *ngIf="!selectedEsp.isActive" pButton type="button" label="Activate" (click)="deactivateEsp()"></button>
+  </div>
+</p-dialog>
+<p-dialog header="Add ESP" [(visible)]="displayAdd" modal="modal" width="500">
+  <div *ngIf="newEsp">
+    <div class="input-data">
+      <span>ESP ID</span>
+      <input type="text" [(ngModel)]="newEsp.espId">
+    </div>
+    <div class="input-data">
+      <span>Name</span>
+      <input type="text" [(ngModel)]="newEsp.espName">
+    </div>
+    <div class="input-data">
+      <span>Token</span>
+      <input type="text" [(ngModel)]="newEsp.apiToken">
+    </div>
+    <div class="input-data">
+      <span>ESS Target</span>
+      <input type="text" [(ngModel)]="newEsp.essTarget">
+    </div>
+    <div class="input-data">
+      <span>VFM Target</span>
+      <input type="text" [(ngModel)]="newEsp.vfmTarget">
+    </div>
+    <button pButton type="button" label="Save" (click)="addEsp()"></button>
+    <button pButton type="button" label="Cancel" (click)="cancelEsp()"></button>
+  </div>
+</p-dialog>
+<p-confirmDialog></p-confirmDialog>

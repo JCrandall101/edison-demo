@@ -4,6 +4,7 @@ import {RouterModule,Routes} from '@angular/router';
 import {AdminComponent} from './admin.component';
 import {DataManagementComponent} from './data-management/data-management.component';
 import {UserManagementComponent} from './user-management/user-management.component';
+import { EspManagementComponent } from './esp-management/esp-management.component';
 
 const appRoutes: Routes = [
   {
@@ -17,6 +18,10 @@ const appRoutes: Routes = [
   {
     path: 'user-management',
     component: UserManagementComponent
+  },
+  {
+    path: 'esp-management',
+    component: EspManagementComponent
   }
 ];
 

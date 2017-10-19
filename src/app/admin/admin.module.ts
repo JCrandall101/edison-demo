@@ -8,12 +8,13 @@ import { DataManagementComponent } from './data-management/data-management.compo
 import { UserManagementComponent } from './user-management/user-management.component';
 
 import {ConfirmDialogModule,ConfirmationService} from 'primeng/primeng';
+import { EspManagementComponent } from './esp-management/esp-management.component';
 
 @NgModule({
   imports: [
     CommonModule,AdminRoutingModule,SharedModule.forRoot(),ConfirmDialogModule
   ],
-  declarations: [AdminComponent, DataManagementComponent, UserManagementComponent],
+  declarations: [AdminComponent, DataManagementComponent, UserManagementComponent, EspManagementComponent],
   providers: [ConfirmationService]
 })
 export class AdminModule { }
