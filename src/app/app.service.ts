@@ -18,6 +18,7 @@ export class AppService {
     let provinces = ['Luapula','Northern','Eastern','Central','Lusaka','Copperbelt','Southern','Western','North Western'];
     let genders = ['Male','Female'];
     let types = ['SHS','ESS Microgrid','Microgrid'];
+    let tiers = ['1','2','3','4','5','6']
 
     let results: any[] = [];
 
@@ -25,7 +26,8 @@ export class AppService {
       results.push({
         province: provinces[Math.floor(Math.random() * 9)],
         customerGender: genders[Math.floor(Math.random() * 2)],
-        type: types[Math.floor(Math.random() * 3)]
+        type: types[Math.floor(Math.random() * 3)],
+        tier: tiers[Math.floor(Math.random() * 6)]
       })
 
     }

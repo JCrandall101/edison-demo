@@ -3,31 +3,52 @@
 <div class="divSpacer"></div>
 <div style="display:inline-block;vertical-align:top;padding:0px 20px;">
   <h2>Filters:</h2>
-  <div style="padding:0px 10px;">
-    <div>
-      <h3>Customer Gender</h3>
-      <div style="padding-left:10px;">
-        <p-checkbox name="genders" value="Male" label="Male" [(ngModel)]="selectedGenders" inputId="Male" (onChange)="processCheckBoxs($event)"></p-checkbox>
-        <div class="divSmallSpacer"></div>
-        <p-checkbox name="genders" value="Female" label="Female" [(ngModel)]="selectedGenders" inputId="Female" (onChange)="processCheckBoxs($event)"></p-checkbox>
+  <div style="padding:0px 10px;width:130px;">
+    <div style="display:inline-block;vertical-align:top;margin:0px 10px 0px 0px;">
+      <div>
+        <h3>Customer Gender</h3>
+        <div style="padding-left:10px;">
+          <p-checkbox name="genders" value="Male" label="Male" [(ngModel)]="selectedGenders" inputId="Male" (onChange)="processCheckBoxs($event)"></p-checkbox>
+          <div class="divSmallSpacer"></div>
+          <p-checkbox name="genders" value="Female" label="Female" [(ngModel)]="selectedGenders" inputId="Female" (onChange)="processCheckBoxs($event)"></p-checkbox>
+        </div>
+      </div>
+      <div>
+        <h3>Types</h3>
+        <div style="padding-left:10px;">
+          <p-checkbox name="types" value="SHS" label="SHS" [(ngModel)]="selectedTypes" inputId="SHS" (onChange)="processTypeCheckBoxs($event)"></p-checkbox>
+          <div class="divSmallSpacer"></div>
+          <p-checkbox name="types" value="ESS Microgrid" label="ESS Microgrid" [(ngModel)]="selectedTypes" inputId="ESS Microgrid" (onChange)="processTypeCheckBoxs($event)"></p-checkbox>
+          <div class="divSmallSpacer"></div>
+          <p-checkbox name="types" value="Microgrid" label="Microgrid" [(ngModel)]="selectedTypes" inputId="Microgrid" (onChange)="processTypeCheckBoxs($event)"></p-checkbox>
+        </div>
       </div>
     </div>
-    <div>
-      <h3>Types</h3>
-      <div style="padding-left:10px;">
-        <p-checkbox name="types" value="SHS" label="SHS" [(ngModel)]="selectedTypes" inputId="SHS" (onChange)="processTypeCheckBoxs($event)"></p-checkbox>
-        <div class="divSmallSpacer"></div>
-        <p-checkbox name="types" value="ESS Microgrid" label="ESS Microgrid" [(ngModel)]="selectedTypes" inputId="ESS Microgrid" (onChange)="processTypeCheckBoxs($event)"></p-checkbox>
-        <div class="divSmallSpacer"></div>
-        <p-checkbox name="types" value="Microgrid" label="Microgrid" [(ngModel)]="selectedTypes" inputId="Microgrid" (onChange)="processTypeCheckBoxs($event)"></p-checkbox>
+    <div style="display:inline-block;vertical-align:top;">
+      <div>
+        <h3>Tiers</h3>
+        <div style="padding-left:10px;">
+          <p-checkbox name="types" value="1" label="Tier 1" [(ngModel)]="selectedTiers" inputId="1" (onChange)="processTierCheckBoxs($event)"></p-checkbox>
+          <div class="divSmallSpacer"></div>
+          <p-checkbox name="types" value="2" label="Tier 2" [(ngModel)]="selectedTiers" inputId="2" (onChange)="processTierCheckBoxs($event)"></p-checkbox>
+          <div class="divSmallSpacer"></div>
+          <p-checkbox name="types" value="3" label="Tier 3" [(ngModel)]="selectedTiers" inputId="3" (onChange)="processTierCheckBoxs($event)"></p-checkbox>
+          <div class="divSmallSpacer"></div>
+          <p-checkbox name="types" value="4" label="Tier 4" [(ngModel)]="selectedTiers" inputId="4" (onChange)="processTierCheckBoxs($event)"></p-checkbox>
+          <div class="divSmallSpacer"></div>
+          <p-checkbox name="types" value="5" label="Tier 5" [(ngModel)]="selectedTiers" inputId="5" (onChange)="processTierCheckBoxs($event)"></p-checkbox>
+          <div class="divSmallSpacer"></div>
+          <p-checkbox name="types" value="6" label="Tier 6" [(ngModel)]="selectedTiers" inputId="6" (onChange)="processTierCheckBoxs($event)"></p-checkbox>
+        </div>
       </div>
     </div>
   </div>
 </div>
 <div style="display:inline-block">
-  <app-d3 #zambiaChart id="d3Zambia" *ngIf="chartData" [data]="chartData" [name]="'d3Zambia'"></app-d3>
+  <app-d3 #zambiaChart id="d3Zambia" *ngIf="chartData" [data]="chartData" [name]="'d3Zambia'" [pointCoords]="pointCoords"></app-d3>
 </div>
-<div style="display:inline-block">
+<div style="display:inline-block;vertical-align:bottom;">
   <!-- <app-d3 #zambiaChart id="d3Zambia" *ngIf="chartData2" [data]="chartData2" [name]="'d3Zambia'"></app-d3> -->
-  <p-chart type="doughnut" [data]="donutData" [options]="donutOptions" [width]="550" [height]="550"></p-chart>
+  <!-- <p-dropdown [options]="pieDDOptions" [(ngModel)]="selectedDDOption"></p-dropdown> -->
+  <p-chart type="bar" [data]="donutData" [options]="donutOptions" [width]="500" [height]="500"></p-chart>
 </div>

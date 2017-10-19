@@ -14,6 +14,7 @@ export class D3Component implements OnInit, OnChanges {
   //@ViewChild('chart') private chartContainer: ElementRef;
   @Input() private data: Array<any>;
   @Input() private name: string = "d3Chart";
+  @Input() private pointCoords: [number[],number[]];
   private margin: any = { top: 20, bottom: 20, left: 20, right: 20};
   private chart: any;
   private width: number;
@@ -146,6 +147,24 @@ export class D3Component implements OnInit, OnChanges {
                   .style("opacity", .0);
           })
           .on("click",clicked);
+
+      let points;
+      if(this.pointCoords){
+        points = this.pointCoords;
+      }else
+      {
+        points = [];
+      }
+
+      svg.selectAll("circle")
+    		.data(points).enter()
+    		.append("circle")
+    		.attr("cx", function (d) { console.log(projection(d)); return projection(d)[0]; })
+    		.attr("cy", function (d) { return projection(d)[1]; })
+    		.attr("r", "5px")
+    		.attr("fill", "red")
+        .attr("stroke", "white")
+        .attr("stroke-width", "1px")
 
       svg.selectAll("text")
         .data(geodata.features)
