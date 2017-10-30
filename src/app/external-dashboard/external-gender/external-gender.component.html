@@ -1,0 +1,80 @@
+<div class="divSpacer"></div>
+<!-- <button pButton type="button" label="Back" (click)="router.navigate(['bfgz-impact'])"></button> -->
+<i class="back-icon fa fa-arrow-circle-o-left fa-5x" aria-hidden="true" (click)="router.navigate(['bfgz-impact'])"></i>
+<div style="display:inline-block;vertical-align:top;width:calc(100% - 57px);">
+  <div style="height:500px;">
+    <p-tabView>
+      <p-tabPanel header="Chart">
+        <div style="width:900px;margin:0 auto;">
+          <p-chart type="pie" [data]="donutData" [style]="{'height':'500px'}"></p-chart>
+        </div>
+      </p-tabPanel>
+      <p-tabPanel header="Data">
+        <p-dataTable [value]="tableData" [rows]="15" [paginator]="true">
+          <p-column field="province" header="Province" sortable="true"></p-column>
+          <p-column field="customerGender" header="Gender" sortable="true"></p-column>
+          <p-column field="type" header="Type" sortable="true"></p-column>
+          <p-column field="tier" header="Tier" sortable="true"></p-column>
+        </p-dataTable>
+      </p-tabPanel>
+    </p-tabView>
+  </div>
+  <div style="background-color:black; height: 1px; width: 100%;"></div>
+  <div style="display:inline-block;vertical-align:top;">
+    <h2 style="margin:5px 0px;">Filters:</h2>
+    <div class="dashboard-detail-filters">
+      <div>
+        <h3>Province</h3>
+        <div style="padding-left:10px;">
+          <div style="display:inline-block;vertical-align:top;">
+            <p-checkbox name="provinces" value="Luapula" label="Luapula" [(ngModel)]="selectedProvince" inputId="Luapula" (onChange)="processCheckBoxs($event)"></p-checkbox>
+            <div class="divSmallSpacer"></div>
+            <p-checkbox name="provinces" value="Northern" label="Northern" [(ngModel)]="selectedProvince" inputId="Northern" (onChange)="processCheckBoxs($event)"></p-checkbox>
+            <div class="divSmallSpacer"></div>
+            <p-checkbox name="provinces" value="Eastern" label="Eastern" [(ngModel)]="selectedProvince" inputId="Eastern" (onChange)="processCheckBoxs($event)"></p-checkbox>
+            <div class="divSmallSpacer"></div>
+            <p-checkbox name="provinces" value="Central" label="Central" [(ngModel)]="selectedProvince" inputId="Central" (onChange)="processCheckBoxs($event)"></p-checkbox>
+            <div class="divSmallSpacer"></div>
+            <p-checkbox name="provinces" value="Lusaka" label="Lusaka" [(ngModel)]="selectedProvince" inputId="Lusaka" (onChange)="processCheckBoxs($event)"></p-checkbox>
+          </div>
+          <div style="display:inline-block;vertical-align:top;">
+            <p-checkbox name="provinces" value="Copperbelt" label="Copperbelt" [(ngModel)]="selectedProvince" inputId="Copperbelt" (onChange)="processCheckBoxs($event)"></p-checkbox>
+            <div class="divSmallSpacer"></div>
+            <p-checkbox name="provinces" value="Southern" label="Southern" [(ngModel)]="selectedProvince" inputId="Southern" (onChange)="processCheckBoxs($event)"></p-checkbox>
+            <div class="divSmallSpacer"></div>
+            <p-checkbox name="provinces" value="Western" label="Western" [(ngModel)]="selectedProvince" inputId="Western" (onChange)="processCheckBoxs($event)"></p-checkbox>
+            <div class="divSmallSpacer"></div>
+            <p-checkbox name="provinces" value="North Western" label="North Western" [(ngModel)]="selectedProvince" inputId="North Western" (onChange)="processCheckBoxs($event)"></p-checkbox>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h3>Types</h3>
+        <div style="padding-left:10px;">
+          <p-checkbox name="types" value="SHS" label="SHS" [(ngModel)]="selectedTypes" inputId="SHS" (onChange)="processTypeCheckBoxs($event)"></p-checkbox>
+          <div class="divSmallSpacer"></div>
+          <p-checkbox name="types" value="Microgrid" label="Microgrid" [(ngModel)]="selectedTypes" inputId="Microgrid" (onChange)="processTypeCheckBoxs($event)"></p-checkbox>
+        </div>
+      </div>
+      <div>
+        <h3>Tiers</h3>
+        <div style="padding-left:10px;">
+          <div style="display:inline-block;vertical-align:top;">
+            <p-checkbox name="types" value="1" label="Tier 1" [(ngModel)]="selectedTiers" inputId="1" (onChange)="processTierCheckBoxs($event)"></p-checkbox>
+            <div class="divSmallSpacer"></div>
+            <p-checkbox name="types" value="2" label="Tier 2" [(ngModel)]="selectedTiers" inputId="2" (onChange)="processTierCheckBoxs($event)"></p-checkbox>
+            <div class="divSmallSpacer"></div>
+            <p-checkbox name="types" value="3" label="Tier 3" [(ngModel)]="selectedTiers" inputId="3" (onChange)="processTierCheckBoxs($event)"></p-checkbox>
+          </div>
+          <div style="display:inline-block;vertical-align:top;">
+            <p-checkbox name="types" value="4" label="Tier 4" [(ngModel)]="selectedTiers" inputId="4" (onChange)="processTierCheckBoxs($event)"></p-checkbox>
+            <div class="divSmallSpacer"></div>
+            <p-checkbox name="types" value="5" label="Tier 5" [(ngModel)]="selectedTiers" inputId="5" (onChange)="processTierCheckBoxs($event)"></p-checkbox>
+            <div class="divSmallSpacer"></div>
+            <p-checkbox name="types" value="6" label="Tier 6" [(ngModel)]="selectedTiers" inputId="6" (onChange)="processTierCheckBoxs($event)"></p-checkbox>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

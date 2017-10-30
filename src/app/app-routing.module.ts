@@ -11,10 +11,10 @@ import {LoginComponent} from './login.component';
 const appRoutes: Routes = [
   {
     path: '',
-    component: HomeComponent
+    loadChildren: 'app/external-dashboard/external-dashboard.module#ExternalDashboardModule'
   },
   {
-    path: 'home',
+    path: 'info',
     component: HomeComponent
   },
   {

@@ -83,3 +83,58 @@ svg.chart-content{
 .ui-datatable-data td{
   text-align:center;
 }
+
+.dashboard-stats{
+  border:1px solid black;
+  border-collapse: collapse;
+  /*border-radius: 10px;*/
+}
+
+.dashboard-stats td{
+  padding:20px 10px;
+  border:1px solid black;
+  border-collapse: collapse;
+  /*border-radius: 10px;*/
+  width:220px;
+}
+
+.dashboard-stats h3{
+  font-size: 32px;
+  margin: 5px 0px;
+  text-align: center;
+}
+.dashboard-stats h2{
+  font-size: 56px;
+  margin: 5px 0px;
+  text-align: center;
+}
+.dashboard-stats h5{
+  font-size: 24px;
+  margin: 5px 0px;
+  text-align: right;
+}
+
+.dashboard-cell:hover{
+  background-color: lightblue;
+  cursor: pointer;
+}
+
+.dashboard-detail-filters{
+  padding:0px 10px;
+}
+.dashboard-detail-filters>div{
+  display:inline-block;
+  vertical-align: top;
+  padding:0px 5px;
+}
+.dashboard-detail-filters>div>h3{
+  margin:0px 0px 5px 0px;
+}
+
+.back-icon{
+  display: inline-block;
+}
+.back-icon:hover{
+  cursor: pointer;
+  color:blue;
+}

@@ -1,5 +1,5 @@
 <div class="divSmallSpacer"></div>
-<p-tabMenu [model]="items" [activeItem]="items[0]"></p-tabMenu>
+<!-- <p-tabMenu [model]="items" [activeItem]="items[0]"></p-tabMenu> -->
 <div class="divSpacer"></div>
 <div style="display:inline-block;vertical-align:top;padding:0px 20px;">
   <h2>Filters:</h2>
@@ -17,8 +17,6 @@
         <h3>Types</h3>
         <div style="padding-left:10px;">
           <p-checkbox name="types" value="SHS" label="SHS" [(ngModel)]="selectedTypes" inputId="SHS" (onChange)="processTypeCheckBoxs($event)"></p-checkbox>
-          <div class="divSmallSpacer"></div>
-          <p-checkbox name="types" value="ESS Microgrid" label="ESS Microgrid" [(ngModel)]="selectedTypes" inputId="ESS Microgrid" (onChange)="processTypeCheckBoxs($event)"></p-checkbox>
           <div class="divSmallSpacer"></div>
           <p-checkbox name="types" value="Microgrid" label="Microgrid" [(ngModel)]="selectedTypes" inputId="Microgrid" (onChange)="processTypeCheckBoxs($event)"></p-checkbox>
         </div>
@@ -47,8 +45,59 @@
 <div style="display:inline-block">
   <app-d3 #zambiaChart id="d3Zambia" *ngIf="chartData" [data]="chartData" [name]="'d3Zambia'" [pointCoords]="pointCoords"></app-d3>
 </div>
-<div style="display:inline-block;vertical-align:bottom;">
-  <!-- <app-d3 #zambiaChart id="d3Zambia" *ngIf="chartData2" [data]="chartData2" [name]="'d3Zambia'"></app-d3> -->
-  <!-- <p-dropdown [options]="pieDDOptions" [(ngModel)]="selectedDDOption"></p-dropdown> -->
-  <p-chart type="bar" [data]="donutData" [options]="donutOptions" [width]="500" [height]="500"></p-chart>
+<div style="display:inline-block;vertical-align:top;">
+  <table class="dashboard-stats">
+    <tr>
+      <!-- <td (click)="navigateDetail('connections')"> -->
+      <td (click)="router.navigate(['bfgz-impact/connections'])" class="dashboard-cell">
+        <h3>Connections</h3>
+        <h2>4,267</h2>
+        <h5># of ESS</h5>
+      </td>
+      <td>
+        <h3>Education</h3>
+        <h2>486</h2>
+        <h5># of Schools</h5>
+      </td>
+      <td>
+        <h3>People</h3>
+        <h2>45,663</h2>
+        <h5># of Benificiaries</h5>
+      </td>
+    </tr>
+    <tr>
+      <td (click)="router.navigate(['bfgz-impact/gender'])" class="dashboard-cell">
+        <h3>Gender</h3>
+        <h2>5,762</h2>
+        <h5># of Females</h5>
+      </td>
+      <td>
+        <h3>Climate</h3>
+        <h2>1,345</h2>
+        <h5>of Co2</h5>
+      </td>
+      <td>
+        <h3>Power</h3>
+        <h2>50,562</h2>
+        <h5># of kW</h5>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <h3>Connections</h3>
+        <h2>4,267</h2>
+        <h5># of ESS</h5>
+      </td>
+      <td>
+        <h3>Financials</h3>
+        <h2>54 M</h2>
+        <h5>EUR Invested</h5>
+      </td>
+      <td>
+        <h3>Jobs</h3>
+        <h2>471</h2>
+        <h5># Jobs Connected</h5>
+      </td>
+    </tr>
+  </table>
 </div>

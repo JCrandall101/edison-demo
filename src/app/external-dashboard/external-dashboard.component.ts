@@ -126,4 +126,17 @@ export class ExternalDashboardComponent implements OnInit {
     this.zambiaChart.updateChart();
   }
 
+  navigateDetail(route:string){
+    route = 'bfgz-impact/' + route;
+    console.log(route);
+    this.router.navigate([route]);
+  }
+
+  cellHover(){
+    console.log('Hover');
+  }
+  cellLeave(){
+    console.log('Leave');
+  }
+
 }

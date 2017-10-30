@@ -47,11 +47,6 @@ export class AppComponent implements OnInit, OnChanges, AfterViewChecked {
   ngOnInit() {
     this.items = [
       {
-        label: 'Home',
-        icon: 'fa-home',
-        command: (click) => {this.router.navigate(['home']);}
-      },
-      {
         label: 'BGFZ Impact',
         icon: 'fa-gears',
         command: (click) => {this.router.navigate(['bfgz-impact']);}
@@ -60,7 +55,13 @@ export class AppComponent implements OnInit, OnChanges, AfterViewChecked {
         //   command: (click) => {this.router.navigate(['home']);}
         // }
         // ]
-      }//,
+      },
+      {
+        label: 'Info',
+        icon: 'fa-home',
+        command: (click) => {this.router.navigate(['info']);}
+      }
+      //,
       // {
       //   label: 'Risk Assessment, Anlysis, Learning And Modeling',
       //   icon: 'fa fa-bar-chart',

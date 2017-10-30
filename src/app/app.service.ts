@@ -17,7 +17,7 @@ export class AppService {
   public getZambiaData(){
     let provinces = ['Luapula','Northern','Eastern','Central','Lusaka','Copperbelt','Southern','Western','North Western'];
     let genders = ['Male','Female'];
-    let types = ['SHS','ESS Microgrid','Microgrid'];
+    let types = ['SHS','Microgrid'];
     let tiers = ['1','2','3','4','5','6']
 
     let results: any[] = [];
@@ -25,8 +25,8 @@ export class AppService {
     for(let i = 0; i < 1000; i++){
       results.push({
         province: provinces[Math.floor(Math.random() * 9)],
-        customerGender: genders[Math.floor(Math.random() * 2)],
-        type: types[Math.floor(Math.random() * 3)],
+        customerGender: genders[(Math.random()) > 0.2 ? 0 : 1],
+        type: types[Math.floor(Math.random() * 2)],
         tier: tiers[Math.floor(Math.random() * 6)]
       })
 
