@@ -138,3 +138,8 @@ svg.chart-content{
   cursor: pointer;
   color:blue;
 }
+
+.information-paragraph{
+  padding:0px 10px;
+  margin: 2px 0px;
+}

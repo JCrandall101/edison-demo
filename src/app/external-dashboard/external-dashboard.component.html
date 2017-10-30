@@ -42,7 +42,7 @@
     </div>
   </div>
 </div>
-<div style="display:inline-block">
+<div style="display:inline-block;width:600px;">
   <app-d3 #zambiaChart id="d3Zambia" *ngIf="chartData" [data]="chartData" [name]="'d3Zambia'" [pointCoords]="pointCoords"></app-d3>
 </div>
 <div style="display:inline-block;vertical-align:top;">
@@ -100,4 +100,5 @@
       </td>
     </tr>
   </table>
+  <p class="information-paragraph">*Cells that light up as blue when hovering provide more detail after clicking on the cell.</p>
 </div>
