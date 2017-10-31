@@ -52,12 +52,12 @@ export class D3Component implements OnInit, OnChanges {
   createChart(){
     let _this = this;
     this.width = 600;
-    this.height = 519;
+    this.height = 559;
 
     //Map projection
     let projection = d3.geoMercator()
         .scale(2789.8234820355233)
-        .center([27.852535,-13.201583843404675]) //projection center
+        .center([27.852535,-13.801583843404675]) //projection center
         .translate([this.width/2,this.height/2]) //translate to center the map in view
 
     //Generate paths based on projection
@@ -196,6 +196,81 @@ export class D3Component implements OnInit, OnChanges {
         .on('mouseover', showToolTip)
         .on('mouseout', hideToolTip)
         .on("click",clicked);
+
+    var numStops = 10;
+    // d3.min(this.data, function (d) { return +d.value; }),
+    // d3.max(this.data, function (d) { return +d.value; })
+    var countScale = d3.scaleLinear()
+	   .domain([d3.min(this.data, function (d) { return +d.value; }), d3.max(this.data, function (d) { return +d.value; })])
+	   .range([0, _this.width])
+    var countPoint = [];
+    var countRange = countScale.domain();
+    countRange[2] = countRange[1] - countRange[0];
+    for(var i = 0; i < numStops; i++) {
+    	countPoint.push(i * countRange[2]/(numStops-1) + countRange[0]);
+    }
+    //Create the gradient
+    svg.append("defs")
+    	.append("linearGradient")
+    	.attr("id", "legend-subscriptions")
+    	.attr("x1", "0%").attr("y1", "0%")
+    	.attr("x2", "100%").attr("y2", "0%")
+    	.selectAll("stop")
+    	.data(d3.range(numStops))
+    	.enter().append("stop")
+    	.attr("offset", function(d,i) {
+    		return countScale( countPoint[i] )/_this.width;
+    	})
+    	.attr("stop-color", function(d,i) {
+    		return color( countPoint[i] );
+    	});
+
+      ///////////////////////////////////////////////////////////////////////////
+      ////////////////////////// Draw the legend ////////////////////////////////
+      ///////////////////////////////////////////////////////////////////////////
+
+      var legendWidth = Math.min(_this.width*0.8, 400);
+      //Color Legend container
+      var legendsvg = svg.append("g")
+      	.attr("class", "legendWrapper")
+      	.attr("transform", "translate(" + (_this.width/2) + "," + (_this.height) + ")");
+
+      //Draw the Rectangle
+      legendsvg.append("rect")
+      	.attr("class", "legendRect")
+      	.attr("x", -legendWidth/2)
+      	.attr("y", -35)
+      	//.attr("rx", hexRadius*1.25/2)
+      	.attr("width", legendWidth)
+      	.attr("height", 10)
+      	.style("fill", "url(#legend-subscriptions)")
+        .style("stroke", "black");
+
+      //Append title
+      legendsvg.append("text")
+      	.attr("class", "legendTitle")
+      	.attr("x", 0)
+      	.attr("y", -45)
+      	.style("text-anchor", "middle")
+      	.text("Number of Subscriptions");
+
+        //Set scale for x-axis
+      var xScale = d3.scaleLinear()
+      	 .range([-legendWidth/2, legendWidth/2])
+      	 .domain([ d3.min(this.data, function (d) { return +d.value; }), d3.max(this.data, function (d) { return +d.value; })] );
+
+      //Define x-axis
+      var xAxis = d3.axisBottom(xScale)
+      	  // .orient("bottom")
+      	  .ticks(5)
+      	  //.tickFormat(formatPercent)
+      	  ;
+
+      //Set up X axis
+      legendsvg.append("g")
+      	.attr("class", "axis")
+      	.attr("transform", "translate(0," + (-30) + ")")
+      	.call(xAxis);
 
     function showToolTip(d:Feature){
       div.transition()

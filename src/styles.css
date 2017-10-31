@@ -143,3 +143,8 @@ svg.chart-content{
   padding:0px 10px;
   margin: 2px 0px;
 }
+
+.home-chart-container .axis path,.home-chart-container  .axis tick,.home-chart-container  .axis line {
+        fill: none;
+        stroke: none;
+    }
