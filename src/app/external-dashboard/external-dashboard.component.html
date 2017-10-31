@@ -1,104 +1,69 @@
 <div class="divSmallSpacer"></div>
-<!-- <p-tabMenu [model]="items" [activeItem]="items[0]"></p-tabMenu> -->
 <div class="divSpacer"></div>
-<div style="display:inline-block;vertical-align:top;padding:0px 20px;">
-  <h2>Filters:</h2>
-  <div style="padding:0px 10px;width:130px;">
-    <div style="display:inline-block;vertical-align:top;margin:0px 10px 0px 0px;">
-      <div>
-        <h3>Customer Gender</h3>
-        <div style="padding-left:10px;">
-          <p-checkbox name="genders" value="Male" label="Male" [(ngModel)]="selectedGenders" inputId="Male" (onChange)="processCheckBoxs($event)"></p-checkbox>
-          <div class="divSmallSpacer"></div>
-          <p-checkbox name="genders" value="Female" label="Female" [(ngModel)]="selectedGenders" inputId="Female" (onChange)="processCheckBoxs($event)"></p-checkbox>
-        </div>
-      </div>
-      <div>
-        <h3>Types</h3>
-        <div style="padding-left:10px;">
-          <p-checkbox name="types" value="SHS" label="SHS" [(ngModel)]="selectedTypes" inputId="SHS" (onChange)="processTypeCheckBoxs($event)"></p-checkbox>
-          <div class="divSmallSpacer"></div>
-          <p-checkbox name="types" value="Microgrid" label="Microgrid" [(ngModel)]="selectedTypes" inputId="Microgrid" (onChange)="processTypeCheckBoxs($event)"></p-checkbox>
-        </div>
-      </div>
-    </div>
-    <div style="display:inline-block;vertical-align:top;">
-      <div>
-        <h3>Tiers</h3>
-        <div style="padding-left:10px;">
-          <p-checkbox name="types" value="1" label="Tier 1" [(ngModel)]="selectedTiers" inputId="1" (onChange)="processTierCheckBoxs($event)"></p-checkbox>
-          <div class="divSmallSpacer"></div>
-          <p-checkbox name="types" value="2" label="Tier 2" [(ngModel)]="selectedTiers" inputId="2" (onChange)="processTierCheckBoxs($event)"></p-checkbox>
-          <div class="divSmallSpacer"></div>
-          <p-checkbox name="types" value="3" label="Tier 3" [(ngModel)]="selectedTiers" inputId="3" (onChange)="processTierCheckBoxs($event)"></p-checkbox>
-          <div class="divSmallSpacer"></div>
-          <p-checkbox name="types" value="4" label="Tier 4" [(ngModel)]="selectedTiers" inputId="4" (onChange)="processTierCheckBoxs($event)"></p-checkbox>
-          <div class="divSmallSpacer"></div>
-          <p-checkbox name="types" value="5" label="Tier 5" [(ngModel)]="selectedTiers" inputId="5" (onChange)="processTierCheckBoxs($event)"></p-checkbox>
-          <div class="divSmallSpacer"></div>
-          <p-checkbox name="types" value="6" label="Tier 6" [(ngModel)]="selectedTiers" inputId="6" (onChange)="processTierCheckBoxs($event)"></p-checkbox>
-        </div>
-      </div>
-    </div>
+<div style="margin:0 auto;text-align:center;">
+  <div style="display:inline-block;width:600px;">
+    <h3 style="text-align:left;margin:2.5px 0px">Selected Province: {{selectedProvince}}</h3>
+    <span style="text-align:left;display:block;font-size:12px;padding:0px 2.5px;">*Double Click to Reset</span>
+    <app-d3 #zambiaChart id="d3Zambia" *ngIf="chartData" [data]="chartData" [name]="'d3Zambia'" [pointCoords]="pointCoords" (dblclick)="selectedProvince = 'All'"
+      (provinceClicked)="provinceClicked($event)"></app-d3>
   </div>
-</div>
-<div style="display:inline-block;width:600px;">
-  <app-d3 #zambiaChart id="d3Zambia" *ngIf="chartData" [data]="chartData" [name]="'d3Zambia'" [pointCoords]="pointCoords"></app-d3>
-</div>
-<div style="display:inline-block;vertical-align:top;">
-  <table class="dashboard-stats">
-    <tr>
-      <!-- <td (click)="navigateDetail('connections')"> -->
-      <td (click)="router.navigate(['bfgz-impact/connections'])" class="dashboard-cell">
-        <h3>Connections</h3>
-        <h2>4,267</h2>
-        <h5># of ESS</h5>
-      </td>
-      <td>
-        <h3>Education</h3>
-        <h2>486</h2>
-        <h5># of Schools</h5>
-      </td>
-      <td>
-        <h3>People</h3>
-        <h2>45,663</h2>
-        <h5># of Benificiaries</h5>
-      </td>
-    </tr>
-    <tr>
-      <td (click)="router.navigate(['bfgz-impact/gender'])" class="dashboard-cell">
-        <h3>Gender</h3>
-        <h2>5,762</h2>
-        <h5># of Females</h5>
-      </td>
-      <td>
-        <h3>Climate</h3>
-        <h2>1,345</h2>
-        <h5>of Co2</h5>
-      </td>
-      <td>
-        <h3>Power</h3>
-        <h2>50,562</h2>
-        <h5># of kW</h5>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <h3>Connections</h3>
-        <h2>4,267</h2>
-        <h5># of ESS</h5>
-      </td>
-      <td>
-        <h3>Financials</h3>
-        <h2>54 M</h2>
-        <h5>EUR Invested</h5>
-      </td>
-      <td>
-        <h3>Jobs</h3>
-        <h2>471</h2>
-        <h5># Jobs Connected</h5>
-      </td>
-    </tr>
-  </table>
-  <p class="information-paragraph">*Cells that light up as blue when hovering provide more detail after clicking on the cell.</p>
+  <div style="display:inline-block;vertical-align:top;">
+    <div class="divSpacer"></div>
+    <table class="dashboard-stats">
+      <tr>
+        <!-- <td (click)="navigateDetail('connections')"> -->
+        <td (click)="router.navigate(['bfgz-impact/connections'])" class="dashboard-cell">
+          <h3>Connections</h3>
+          <h2>4,267</h2>
+          <h5># of ESS</h5>
+        </td>
+        <td>
+          <h3>Education</h3>
+          <h2>486</h2>
+          <h5># of Schools</h5>
+        </td>
+        <td>
+          <h3>People</h3>
+          <h2>45,663</h2>
+          <h5># of Benificiaries</h5>
+        </td>
+      </tr>
+      <tr>
+        <td (click)="router.navigate(['bfgz-impact/gender'])" class="dashboard-cell">
+          <h3>Gender</h3>
+          <h2>5,762</h2>
+          <h5># of Females</h5>
+        </td>
+        <td>
+          <h3>Climate</h3>
+          <h2>1,345</h2>
+          <h5>of Co2</h5>
+        </td>
+        <td>
+          <h3>Power</h3>
+          <h2>50,562</h2>
+          <h5># of kW</h5>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h3>Connections</h3>
+          <h2>4,267</h2>
+          <h5># of ESS</h5>
+        </td>
+        <td>
+          <h3>Financials</h3>
+          <h2>54 M</h2>
+          <h5>EUR Invested</h5>
+        </td>
+        <td>
+          <h3>Jobs</h3>
+          <h2>471</h2>
+          <h5># Jobs Connected</h5>
+        </td>
+      </tr>
+    </table>
+    <p class="information-paragraph">*Click cells that light up as blue for more information.</p>
+    <!-- <p class="information-paragraph">*Cells that light up as blue when hovering provide more detail after clicking on the cell.</p> -->
+  </div>
 </div>

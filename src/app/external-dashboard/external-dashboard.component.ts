@@ -13,13 +13,8 @@ import {MenuItem} from 'primeng/primeng';
 })
 export class ExternalDashboardComponent implements OnInit {
   items:MenuItem[];
-  donutData:any;
-  donutOptions:any;
-  pointCoords:[number[],number[]]=[
-    [27.852535,-13.201583843404675],
-    [29.852535,-10.201583843404675],
-    [28.389943,-15.521512]
-  ];
+  pointCoords:[number[],number[]];
+  selectedProvince:string = "All";
 
   @ViewChild('zambiaChart') private zambiaChart: D3Component;
   private chartData: Array<any> =
@@ -35,22 +30,6 @@ export class ExternalDashboardComponent implements OnInit {
     {name: "Central", value: "0"}
   ];
   private rawData:any[];
-  mapOptions: any[] = [{label:'All',value:'All'}];
-  slctdMapOption: 'All';
-  selectedGenders=['Male','Female'];
-  selectedTypes = ['SHS','ESS Microgrid','Microgrid'];
-  selectedTiers = ['1','2','3','4','5','6'];
-  pieDDOptions = [
-    {
-      label:'Province',
-      value:'province'
-    },
-    {
-      label:'Tier',
-      value:'tier'
-    }
-  ];
-  selectedDDOption = 'province';
 
   constructor(private appService:AppService, private router:Router) {
 
@@ -69,74 +48,20 @@ export class ExternalDashboardComponent implements OnInit {
     console.log(this.rawData);
 
     this.generateData();
-
-    this.donutOptions = {
-      legend: {
-            display: false
-         },
-         scales: {
-           yAxes: [{
-               display: true,
-               ticks: {
-                   suggestedMin: 0,
-               }
-           }]
-       }
-    }
   }
 
   generateData() {
     let _this = this
-    let filterData = _.filter(this.rawData,function(row){
-      return _.contains(_this.selectedGenders,row.customerGender) && _.contains(_this.selectedTypes,row.type) && _.contains(_this.selectedTiers,row.tier);
-    })
-    let data = _.countBy(_.pluck(filterData,'province'),function(prvnc){
+    let data = _.countBy(_.pluck(_this.rawData,'province'),function(prvnc){
       return prvnc;
     })
 
     _.each(this.chartData,function(val){
       val.value = data[val.name];
     })
-
-    this.donutData = {
-      labels: _.pluck(this.chartData,'name'),
-      datasets: [
-          {
-              data: _.pluck(this.chartData,'value'),
-              backgroundColor: ["#4D4D4D","#5DA5DA","#FAA43A","#60BD68","#F17CB0","#B2912F","#B276B2","#DECF3F","#F15854"],
-              hoverBackgroundColor: ["#4D4D4D","#5DA5DA","#FAA43A","#60BD68","#F17CB0","#B2912F","#B276B2","#DECF3F","#F15854"]
-          }]
-      };
-    }
-
-  mapOptionChange(){
-
-  }
-  processCheckBoxs(e){
-    this.generateData();
-    this.zambiaChart.updateChart();
-  }
-  processTypeCheckBoxs(e){
-    this.generateData();
-    this.zambiaChart.updateChart();
   }
 
-  processTierCheckBoxs(e){
-    this.generateData();
-    this.zambiaChart.updateChart();
+  provinceClicked(e){
+    this.selectedProvince = e.province.properties.CAPTION;
   }
-
-  navigateDetail(route:string){
-    route = 'bfgz-impact/' + route;
-    console.log(route);
-    this.router.navigate([route]);
-  }
-
-  cellHover(){
-    console.log('Hover');
-  }
-  cellLeave(){
-    console.log('Leave');
-  }
-
 }

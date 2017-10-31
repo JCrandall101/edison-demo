@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, ViewChild, ElementRef, Input, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, OnChanges, ViewChild, ElementRef, Input, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
 import * as d3 from 'd3';
 import {AppService} from '../../app.service';
 import {GeoData} from './geodata.obj';
@@ -15,6 +15,7 @@ export class D3Component implements OnInit, OnChanges {
   @Input() private data: Array<any>;
   @Input() private name: string = "d3Chart";
   @Input() private pointCoords: [number[],number[]];
+  @Output() provinceClicked = new EventEmitter<any>();
   private margin: any = { top: 20, bottom: 20, left: 20, right: 20};
   private chart: any;
   private width: number;
@@ -135,17 +136,8 @@ export class D3Component implements OnInit, OnChanges {
                    return "#ccc";
                }
            })
-          .on('mouseover', function (d:Feature) {
-               div.transition()
-                   .duration(200)
-                   .style("opacity", .9);
-               div.html(d.properties.CAPTION + " : " + parseInt(d.properties['amount']));
-           })
-          .on('mouseout', function (d) {
-              div.transition()
-                  .duration(200)
-                  .style("opacity", .0);
-          })
+          .on('mouseover', showToolTip)
+          .on('mouseout', hideToolTip)
           .on("click",clicked);
 
       let points;
@@ -201,7 +193,23 @@ export class D3Component implements OnInit, OnChanges {
           return (parseInt(d.properties['amount']) > checkVal) ? 'white' : 'black';
         })
         .attr("cursor","pointer")
+        .on('mouseover', showToolTip)
+        .on('mouseout', hideToolTip)
         .on("click",clicked);
+
+    function showToolTip(d:Feature){
+      div.transition()
+          .duration(200)
+          .style("opacity", .9);
+      div.html(d.properties.CAPTION + " : " + parseInt(d.properties['amount']));
+    }
+
+    function hideToolTip(d:Feature){
+      div.transition()
+          .duration(200)
+          .style("opacity", .0);
+    }
+
     function move() {
       paths.style("stroke-width", 1 / d3.event.transform.k + "px");
       paths.attr("transform", d3.event.transform); // updated for d3 v4
@@ -209,7 +217,8 @@ export class D3Component implements OnInit, OnChanges {
     // Add optional onClick events for features here
     // d.properties contains the attributes (e.g. d.properties.name, d.properties.population)
     function clicked(d,i) {
-      console.log(d,i);
+      // console.log(d,i);
+      _this.provinceClicked.emit({province: d});
     }
   }
 
