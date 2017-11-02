@@ -4,6 +4,7 @@ import {RouterModule,Routes} from '@angular/router';
 import {HomeComponent} from './home/home.component';
 import {ExternalDashboardModule} from './external-dashboard/external-dashboard.module';
 import {InternalDashboardModule} from './internal-dashboard/internal-dashboard.module';
+import {PortfolioMonitoringModule} from './portfolio-monitoring/portfolio-monitoring.module';
 import {AdminModule} from './admin/admin.module';
 import { AuthGuard } from './auth.guard';
 import {LoginComponent} from './login.component';
@@ -20,6 +21,11 @@ const appRoutes: Routes = [
   {
      path: 'bfgz-impact',
      loadChildren: 'app/external-dashboard/external-dashboard.module#ExternalDashboardModule'
+  },
+  {
+    path: 'portfolio-monitoring',
+    canActivate: [AuthGuard],
+    loadChildren: 'app/portfolio-monitoring/portfolio-monitoring.module#PortfolioMonitoringModule'
   },
   {
      path: 'analytics',

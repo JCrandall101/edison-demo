@@ -18,8 +18,13 @@ export class AppComponent implements OnInit, OnChanges, AfterViewChecked {
 
   msgs:Message[];
   items: MenuItem[];
+  portfolioMonitoring: MenuItem = {
+    label: 'Portfolio Monitoring',
+    icon: 'fa fa-line-chart',
+    command: (click) => {this.router.navigate(['portfolio-monitoring']);}
+  }
   internalDashItem: MenuItem = {
-    label: 'Risk Assessment, Anlysis, Learning And Modeling',
+    label: 'Risk Anlysis',
     icon: 'fa fa-bar-chart',
     command: (click) => {this.router.navigate(['analytics']);}
   };
@@ -48,71 +53,51 @@ export class AppComponent implements OnInit, OnChanges, AfterViewChecked {
     this.items = [
       {
         label: 'BGFZ Impact',
-        icon: 'fa-gears',
+        icon: 'fa fa-gears',
         command: (click) => {this.router.navigate(['bfgz-impact']);}
-        // items: [{
-        //   label: 'ERM',
-        //   command: (click) => {this.router.navigate(['home']);}
-        // }
-        // ]
       },
       {
         label: 'Info',
-        icon: 'fa-home',
+        icon: 'fa fa-info-circle',
         command: (click) => {this.router.navigate(['info']);}
       }
-      //,
-      // {
-      //   label: 'Risk Assessment, Anlysis, Learning And Modeling',
-      //   icon: 'fa fa-bar-chart',
-      //   command: (click) => {this.router.navigate(['home']);}
-      // },
-      // {
-      //   label: 'Charts Demo',
-      //   icon: 'fa fa-bar-chart',
-      //   command: (click) => {this.router.navigate(['home']);}
-      // }
     ];
-
-    // if(this.authService.isLoggedIn){
-    //   this.items.push({
-    //     label: 'Admin',
-    //     icon: 'fa-database',
-    //     command: (click) => {this.router.navigate(['admin']);}
-    //   });
-    // }
-
   }
 
   ngOnChanges(){
-    // if(this.authService.isLoggedIn){
-    //   this.items.push({
-    //     label: 'Admin',
-    //     icon: 'fa-database',
-    //     command: (click) => {this.router.navigate(['admin']);}
-    //   });
-    // }
   }
 
   ngAfterViewChecked(){
-    if(this.authService.isLoggedIn && !_.contains(this.items,this.internalDashItem)){
-      this.items.push(this.internalDashItem);
+    if(this.authService.isLoggedIn){
+      if(!_.contains(this.items,this.adminItem)){
+        this.items.splice(1,0,this.adminItem);
+      }
+      if(!_.contains(this.items,this.internalDashItem)){
+        this.items.splice(1,0,this.internalDashItem);
+      }
+      if(!_.contains(this.items,this.portfolioMonitoring)){
+        this.items.splice(1,0,this.portfolioMonitoring);
+      }
     }
-    if(this.authService.isLoggedIn && !_.contains(this.items,this.adminItem)){
-      this.items.push(this.adminItem);
-    }
-    if(!this.authService.isLoggedIn && _.contains(this.items,this.adminItem)){
-      let index: number = this.items.indexOf(this.adminItem);
-      this.items.splice(index,1);
-    }
-    if(!this.authService.isLoggedIn && _.contains(this.items,this.internalDashItem)){
-      let index: number = this.items.indexOf(this.internalDashItem);
-      this.items.splice(index,1);
+
+    if(!this.authService.isLoggedIn){
+      if(_.contains(this.items,this.portfolioMonitoring)){
+        let index: number = this.items.indexOf(this.portfolioMonitoring);
+        this.items.splice(index,1);
+      }
+      if(_.contains(this.items,this.adminItem)){
+        let index: number = this.items.indexOf(this.adminItem);
+        this.items.splice(index,1);
+      }
+      if(_.contains(this.items,this.internalDashItem)){
+        let index: number = this.items.indexOf(this.internalDashItem);
+        this.items.splice(index,1);
+      }
     }
   }
 
   showViaService() {
-        this.messageService.add({severity:'success', summary:'Service Message', detail:'Via MessageService'});
+      this.messageService.add({severity:'success', summary:'Service Message', detail:'Via MessageService'});
   }
   login(){
     if(this.router.url!='/login'){
@@ -122,15 +107,22 @@ export class AppComponent implements OnInit, OnChanges, AfterViewChecked {
   }
   logout(){
     this.authService.logout();
-    if(!this.authService.isLoggedIn && _.contains(this.items,this.adminItem)){
-      let index: number = this.items.indexOf(this.adminItem);
-      this.items.splice(index,1);
+    if(!this.authService.isLoggedIn){
+      if(_.contains(this.items,this.portfolioMonitoring)){
+        let index: number = this.items.indexOf(this.portfolioMonitoring);
+        this.items.splice(index,1);
+      }
+      if(_.contains(this.items,this.adminItem)){
+        let index: number = this.items.indexOf(this.adminItem);
+        this.items.splice(index,1);
+      }
+      if(_.contains(this.items,this.internalDashItem)){
+        let index: number = this.items.indexOf(this.internalDashItem);
+        this.items.splice(index,1);
+      }
     }
-    if(!this.authService.isLoggedIn && _.contains(this.items,this.internalDashItem)){
-      let index: number = this.items.indexOf(this.internalDashItem);
-      this.items.splice(index,1);
-    }
-    this.router.navigate(['/home']);
+    console.log('logout');
+    this.router.navigate(['/bfgz-impact']);
   }
 
   cookieCheck(){

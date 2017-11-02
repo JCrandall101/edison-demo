@@ -114,9 +114,7 @@ export class D3Component implements OnInit, OnChanges {
           for (var j = 0; j < geodata.features.length; j++) {
               var jsonState = geodata.features[j].properties.CAPTION;
               if (dataState == jsonState) {
-                  //Copy the data value into the GeoJSON
                   geodata.features[j].properties['amount'] = dataValue;
-                  //Stop looking through the JSON
                   break;
               }
           }
@@ -130,11 +128,8 @@ export class D3Component implements OnInit, OnChanges {
           .style("stroke", "black")
           .style("fill", function (d:Feature) {
                var value = d.properties['amount'];
-               if (value) {
-                   return color(value);
-               } else {
-                   return "#ccc";
-               }
+               if (value) { return color(value); }
+               else { return "#ccc"; }
            })
           .on('mouseover', showToolTip)
           .on('mouseout', hideToolTip)
@@ -162,27 +157,17 @@ export class D3Component implements OnInit, OnChanges {
         .data(geodata.features)
         .enter()
         .append("svg:text")
-        .text(function(d:Feature){
-          return d.properties.CAPTION;
-        })
+        .text(function(d:Feature){ return d.properties.CAPTION; })
         .attr("x",function(d:Feature){
           var b = <d3.GeoPermissibleObjects>d;
-          if(d.properties['middle-x']){
-            return path.centroid(b)[0] + d.properties['middle-x']
-          }
-          else{
-            return path.centroid(b)[0];
-          }
+          if(d.properties['middle-x']){ return path.centroid(b)[0] + d.properties['middle-x'] }
+          else{ return path.centroid(b)[0]; }
 
         })
         .attr("y",function(d:Feature){
           var b = <d3.GeoPermissibleObjects>d;
-          if(d.properties['middle-y']){
-            return path.centroid(b)[1] + d.properties['middle-y']
-          }
-          else{
-            return path.centroid(b)[1];
-          }
+          if(d.properties['middle-y']){ return path.centroid(b)[1] + d.properties['middle-y'] }
+          else{ return path.centroid(b)[1]; }
         })
         .attr("text-anchor","middle")
         .attr("font-size","8pt")
