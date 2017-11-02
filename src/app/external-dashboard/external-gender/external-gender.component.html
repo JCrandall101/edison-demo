@@ -10,11 +10,20 @@
         </div>
       </p-tabPanel>
       <p-tabPanel header="Data">
-        <p-dataTable [value]="tableData" [rows]="15" [paginator]="true">
-          <p-column field="province" header="Province" sortable="true"></p-column>
-          <p-column field="customerGender" header="Gender" sortable="true"></p-column>
-          <p-column field="type" header="Type" sortable="true"></p-column>
-          <p-column field="tier" header="Tier" sortable="true"></p-column>
+        <p-dataTable [value]="tableData" [rows]="15" [paginator]="true" #dt>
+          <p-column field="province" header="Province" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+          <p-column field="customerGender" header="Gender" sortable="true" [filter]="true" filterMatchMode="startsWith"></p-column>
+          <p-column field="type" header="Type" sortable="true" [filter]="true" filterMatchMode="contains"></p-column>
+          <p-column field="tier" header="Tier" sortable="true" [filter]="true" filterMatchMode="in">
+            <ng-template pTemplate="filter" let-col>
+              <p-multiSelect [options]="tiers" defaultLabel="All Tiers" (onChange)="dt.filter($event.value,col.field,col.filterMatchMode)" styleClass="ui-column-filter"></p-multiSelect>
+            </ng-template>
+          </p-column>
+          <!-- <p-column field="color" header="Color (Custom)" [filter]="true" filterMatchMode="in">
+              <ng-template pTemplate="filter" let-col>
+                  <p-multiSelect [options]="colors" defaultLabel="All Colors" (onChange)="dt.filter($event.value,col.field,col.filterMatchMode)" styleClass="ui-column-filter"></p-multiSelect>
+              </ng-template>
+          </p-column> -->
         </p-dataTable>
       </p-tabPanel>
     </p-tabView>

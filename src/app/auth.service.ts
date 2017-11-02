@@ -14,9 +14,9 @@ export class AuthService {
 
   login(email:string,pwd:string): Observable<boolean> {
     if(email=="crandall@ficonsulting.com" && pwd=="FIC123"){
-        return Observable.of(true).delay(1000).do(val => this.isLoggedIn = true);
+        return Observable.of(true).do(val => this.isLoggedIn = true);//Observable.of(true).delay(1000).do(val => this.isLoggedIn = true);
     }
-    return Observable.of(true).delay(1000).do(val => this.isLoggedIn = false);
+    return Observable.of(true).do(val => this.isLoggedIn = false);//Observable.of(true).delay(1000).do(val => this.isLoggedIn = false);
   }
 
   logout(): void {

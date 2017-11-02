@@ -1,6 +1,14 @@
 <div>
   <div style="width:70%;display:inline-block;">
-    <p-chart type="line" [data]="lineData"></p-chart>
+    <!-- <p-chart type="line" [data]="lineData"></p-chart> -->
+    <div style="margin-bottom:100px;height:100%;width:100%;">
+        <div id="linePlotDiv"
+             name="linePlotDiv"
+             style="height:100%;width:100%;">
+             <!-- (click)='onClick'> -->
+            <!-- Plotly chart will be drawn inside this DIV -->
+        </div>
+    </div>
   </div>
   <div style="width:calc(30% - 15px); min-width:200px; display:inline-block;vertical-align:top; padding: 30px 0px;">
     <table class="dashboard-stats" style="margin:0 auto; text-align:center;">

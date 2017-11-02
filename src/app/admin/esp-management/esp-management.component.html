@@ -59,18 +59,18 @@
 </p-dialog>
 <p-dialog header="Add ESP" [(visible)]="displayAdd" modal="modal" width="500">
   <div *ngIf="newEsp">
-    <div class="input-data">
+    <!-- <div class="input-data">
       <span>ESP ID</span>
       <input type="text" [(ngModel)]="newEsp.espId">
-    </div>
+    </div> -->
     <div class="input-data">
       <span>Name</span>
       <input type="text" [(ngModel)]="newEsp.espName">
     </div>
-    <div class="input-data">
+    <!-- <div class="input-data">
       <span>Token</span>
       <input type="text" [(ngModel)]="newEsp.apiToken">
-    </div>
+    </div> -->
     <div class="input-data">
       <span>ESS Target</span>
       <input type="text" [(ngModel)]="newEsp.essTarget">

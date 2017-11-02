@@ -22,11 +22,21 @@ export class ExternalGenderComponent implements OnInit {
   selectedGenders=['Male','Female'];
   selectedTypes = ['SHS','ESS Microgrid','Microgrid'];
   selectedTiers = ['1','2','3','4','5','6'];
+  tiers: any[];
   constructor(private router: Router, private appService:AppService) { }
 
   ngOnInit() {
     this.rawData = this.appService.getZambiaData();
     this.generateData();
+
+    this.tiers = [
+      {label:'1',value:'1'},
+      {label:'2',value:'2'},
+      {label:'3',value:'3'},
+      {label:'4',value:'4'},
+      {label:'5',value:'5'},
+      {label:'6',value:'6'},
+    ]
   }
 
   navigateExternalDashboardHome(){
@@ -68,5 +78,15 @@ export class ExternalGenderComponent implements OnInit {
 
   processTierCheckBoxs(e){
     this.generateData();
+  }
+
+  tiersMultiSelect(){
+    let _this = this;
+    let tierOptions: any[] = [];
+    _.each(_this.selectedTiers,function(t){
+      //console.log('Hi');
+      tierOptions.push({label: t, value: t});
+    })
+    return tierOptions
   }
 }
