@@ -1,26 +1,36 @@
 <div>
+  <div class="divSpacer"></div>
+  <div class="date-range-div">
+    <div>
+      <div><h3>Start Date</h3></div>
+      <p-calendar [(ngModel)]="startDate" [readonlyInput]="true"></p-calendar>
+    </div>
+    <span>to</span>
+    <div>
+      <div><h3>End Date</h3></div>
+      <p-calendar [(ngModel)]="endDate" [readonlyInput]="true"></p-calendar>
+    </div>
+    <!-- [minDate]="minDate" [maxDate]="maxDate"  -->
+  </div>
+
+  <div class="divSpacer"></div>
   <div style="width:70%;display:inline-block;">
     <!-- <p-chart type="line" [data]="lineData"></p-chart> -->
-    <div style="margin-bottom:100px;height:100%;width:100%;">
-        <div id="linePlotDiv"
-             name="linePlotDiv"
-             style="height:100%;width:100%;">
-             <!-- (click)='onClick'> -->
-            <!-- Plotly chart will be drawn inside this DIV -->
-        </div>
+    <div style="margin-bottom:10px;height:100%;width:100%;">
+        <div id="linePlotDiv" name="linePlotDiv" style="height:100%;width:100%;"></div>
     </div>
   </div>
   <div style="width:calc(30% - 15px); min-width:200px; display:inline-block;vertical-align:top; padding: 30px 0px;">
     <table class="dashboard-stats" style="margin:0 auto; text-align:center;">
       <tr>
-        <td>
+        <td (click)="router.navigate(['bfgz-impact/connections'])" class="dashboard-cell">
           <h3>Repeat Customers</h3>
           <h2>267</h2>
           <h5># of ESS</h5>
         </td>
       </tr>
       <tr>
-        <td>
+        <td (click)="router.navigate(['bfgz-impact/connections'])" class="dashboard-cell">
           <h3>Upgrades</h3>
           <h2>135</h2>
           <h5># of ESS</h5>
@@ -28,4 +38,28 @@
       </tr>
     </table>
   </div>
+</div>
+<!-- <div class="divSpacer"></div> -->
+<div>
+  <h3 style="margin:0px 0px 10px 0px;">Current Progress:</h3>
+  <table class="center-boarder-table">
+    <thead>
+      <tr>
+        <th>Plotted</th>
+        <th>ESP</th>
+        <th>Total ESS Target</th>
+        <th>Current ESS Total</th>
+        <th>% to Target</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let esp of esps">
+        <td><input type="checkbox" [(ngModel)]="esp.onPlot"></td>
+        <td>{{esp.name}}</td>
+        <td>{{esp.targetTotal | number}}</td>
+        <td>{{esp.currerntTotal | number}}</td>
+        <td>{{(esp.currerntTotal / esp.targetTotal) | percent}}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>

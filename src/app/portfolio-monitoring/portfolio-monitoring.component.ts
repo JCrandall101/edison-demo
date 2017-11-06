@@ -1,4 +1,6 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
+import {Router} from '@angular/router';
+import {AppService} from '../app.service';
 
 declare var Plotly: any;
 
@@ -11,10 +13,15 @@ export class PortfolioMonitoringComponent implements OnInit {
   lineData:any;
   linePlotName: string = 'linePlotDiv';
   _myPlot: CustomHTMLElement;
+  startDate:Date;
+  endDate:Date;
+
+  esps:any[];
 
   trace1:any;
   trace2:any;
-  lineLayout:any = {};
+  trace3:any;
+  lineLayout:any = {autosize: true};
   plotlyOptions: any = {
       displaylogo: false,
       modeBarButtonsToRemove: [
@@ -26,24 +33,59 @@ export class PortfolioMonitoringComponent implements OnInit {
       ]
     };
 
-  constructor() { }
+  constructor(private appService: AppService, private router: Router) { }
 
   ngOnInit() {
+    console.log('Is IE?',this.appService.isIE());
     this.trace1 = {
         x: [1, 2, 3, 4],
-        y: [10, 15, 13, 17],
+        y: [10, 12, 13, 17],
         type: 'scatter',
-        name: 'Standard Microgrid'
+        name: 'Standard Microgrid Target',
+        line: {
+          dash: 'dashdot',
+          width: 3,
+          color: 'green'
+        },
+        showlegend: false
       };
     this.trace2 = {
+      x: [1,2,3,4],
+      y: [9,15,16,18],
+      type: 'scatter',
+      name: 'Standard Microgrid',
+      line: {
+        dash: 'solid',
+        width: 3,
+        color: 'green'
+      }
+    }
+    this.trace3 = {
         x: [1, 2, 3, 4],
-        y: [16, 5, 11, 9],
+        y: [2, 8, 10, 14],
         type: 'scatter',
-        name: 'Fenix'
+        name: 'Fenix Target',
+        line: {
+          dash: 'dashdot',
+          width: 3,
+          color: 'orange'
+        },
+        showlegend: false
       };
-    this.lineData = [this.trace1, this.trace2];
+    let trace4 = {
+      x: [1, 2, 3, 4],
+      y: [1, 5, 11, 15],
+      type: 'scatter',
+      name: 'Fenix',
+      line: {
+        dash: 'solid',
+        width: 3,
+        color: 'orange'
+      },
+    }
+    this.lineData = [this.trace1, this.trace2, this.trace3, trace4];
     this.lineLayout = {
-      title: 'Number of Subscriptions',
+      title: 'Number of Subscriptions (Targets Dashed)',
       xaxis: {
         title: 'Months'
       },
@@ -51,6 +93,8 @@ export class PortfolioMonitoringComponent implements OnInit {
         title: 'Subscritions'
       }
     }
+
+    this.getEspData();
   }
 
   ngAfterViewInit(){
@@ -65,6 +109,9 @@ export class PortfolioMonitoringComponent implements OnInit {
           _this.onClick(data);
           return;
         });
+        window.onresize = function() {
+            Plotly.Plots.resize(_this._myPlot);
+        };
       }
     }
   }
@@ -73,18 +120,34 @@ export class PortfolioMonitoringComponent implements OnInit {
     console.log(e);
   }
 
-//     var trace1 = {
-//   x: [1, 2, 3, 4],
-//   y: [10, 15, 13, 17],
-//   type: 'scatter'
-// };
-// var trace2 = {
-//   x: [1, 2, 3, 4],
-//   y: [16, 5, 11, 9],
-//   type: 'scatter'
-// };
-// var data = [trace1, trace2];
-// Plotly.newPlot('myDiv', data);
+  getEspData(){
+    this.esps = [
+      {
+        name:'Fenix',
+        targetTotal: 30000,
+        currerntTotal: 10000,
+        onPlot: true
+      },
+      {
+        name:'Standard Microgrid',
+        targetTotal: 25000,
+        currerntTotal: 15000,
+        onPlot: true
+      },
+      {
+        name:'Mobisal',
+        targetTotal: 15000,
+        currerntTotal: 5000,
+        onPlot: false
+      },
+      {
+        name:'Angaza',
+        targetTotal: 18000,
+        currerntTotal: 10000,
+        onPlot: false
+      }
+    ]
+  }
 
 }
 

@@ -17,14 +17,15 @@ import {ChartModule} from 'primeng/primeng';
 import {GMapModule} from 'primeng/primeng';
 import {TabViewModule} from 'primeng/primeng';
 import {MultiSelectModule} from 'primeng/primeng';
+import {CalendarModule} from 'primeng/primeng';
 //import {MessagingService} from './services/messaging.service';
 
 @NgModule({
   imports: [CommonModule,CheckboxModule,FormsModule,DataTableModule,ButtonModule,DialogModule,TabMenuModule,MenuModule,FileUploadModule,DropdownModule,ChartModule,GMapModule,
-            TabViewModule,MultiSelectModule],
+            TabViewModule,MultiSelectModule,CalendarModule],
   declarations: [D3Component],
   exports: [CommonModule,D3Component,CheckboxModule,FormsModule,DataTableModule,ButtonModule,DialogModule,TabMenuModule,MenuModule,FileUploadModule,DropdownModule,ChartModule,GMapModule,
-            TabViewModule,MultiSelectModule]
+            TabViewModule,MultiSelectModule,CalendarModule]
 })
 export class SharedModule {
   static forRoot(): ModuleWithProviders {

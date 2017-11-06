@@ -35,4 +35,8 @@ export class AppService {
     return results;
   }
 
+  public isIE(){
+    return typeof window.navigator.msSaveBlob !== 'undefined';
+  };
+
 }

@@ -148,3 +148,27 @@ svg.chart-content{
         fill: none;
         stroke: none;
     }
+
+.date-range-div{
+
+}
+.date-range-div>div{
+  display:inline-block;
+}
+.date-range-div h3{
+  margin:5px 0px 0px 0px;
+}
+
+.center-boarder-table{
+  text-align: left;
+  /*margin:0 auto;*/
+}
+.center-boarder-table,.center-boarder-table th, .center-boarder-table td{
+  border:1px solid black;
+  border-collapse: collapse;
+}
+
+.center-boarder-table td, .center-boarder-table th{
+  padding: 2.5px 5px;
+  text-align: center;
+}
