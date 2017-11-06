@@ -172,3 +172,15 @@ svg.chart-content{
   padding: 2.5px 5px;
   text-align: center;
 }
+
+.data-tab-div{
+  position:relative;
+}
+.data-tab-div>button{
+  position: absolute;
+  top:2.5px;
+  right:2.5px;
+}
+.data-tab-div>h3{
+  margin:0px 0px 10px 0px;
+}

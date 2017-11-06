@@ -15,6 +15,7 @@ export class PortfolioMonitoringComponent implements OnInit {
   _myPlot: CustomHTMLElement;
   startDate:Date;
   endDate:Date;
+  tabIndex:number = 0;
 
   esps:any[];
 
@@ -90,7 +91,7 @@ export class PortfolioMonitoringComponent implements OnInit {
         title: 'Months'
       },
       yaxis: {
-        title: 'Subscritions'
+        title: 'Subscriptions'
       }
     }
 
@@ -110,7 +111,9 @@ export class PortfolioMonitoringComponent implements OnInit {
           return;
         });
         window.onresize = function() {
+          if(_this.tabIndex == 0){
             Plotly.Plots.resize(_this._myPlot);
+          }
         };
       }
     }
@@ -147,6 +150,17 @@ export class PortfolioMonitoringComponent implements OnInit {
         onPlot: false
       }
     ]
+  }
+
+  download(){
+    console.log(this.tabIndex);
+  }
+
+  handleChange(e) {
+    this.tabIndex = e.index;
+    if(e.index == 0){
+      Plotly.Plots.resize(this._myPlot);
+    }
   }
 
 }

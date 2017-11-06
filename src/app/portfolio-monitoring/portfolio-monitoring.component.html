@@ -14,12 +14,41 @@
   </div>
 
   <div class="divSpacer"></div>
-  <div style="width:70%;display:inline-block;">
-    <!-- <p-chart type="line" [data]="lineData"></p-chart> -->
-    <div style="margin-bottom:10px;height:100%;width:100%;">
-        <div id="linePlotDiv" name="linePlotDiv" style="height:100%;width:100%;"></div>
-    </div>
-  </div>
+  <!-- Add Tabs here -->
+  <p-tabView [style]="{'width':'70%','display':'inline-block'}" [activeIndex]="tabIndex"  (onChange)="handleChange($event)">
+    <p-tabPanel header="Chart">
+      <div>
+        <div style="margin-bottom:10px;height:100%;width:100%;">
+            <div id="linePlotDiv" name="linePlotDiv" style="height:100%;width:100%;"></div>
+        </div>
+      </div>
+    </p-tabPanel>
+    <p-tabPanel header="Data">
+      <div class="data-tab-div">
+        <h3>Current Progress:</h3>
+        <button pButton icon="fa-download" (click)="download()"></button>
+        <p-dataTable [value]="esps">
+          <p-column field="name" header="ESP" sortable="true"></p-column>
+          <p-column field="targetTotal" header="Total ESS Target" sortable="true">
+            <ng-template pTemplate="body" let-col let-row="rowData">
+              <span>{{row[col.field] | number}}</span>
+            </ng-template>
+          </p-column>
+          <p-column field="currerntTotal" header="Current ESS Total" sortable="true">
+            <ng-template pTemplate="body" let-col let-row="rowData">
+              <span>{{row[col.field] | number}}</span>
+            </ng-template>
+          </p-column>
+          <p-column header="% of Target" sortable="true">
+            <ng-template pTemplate="body" let-col let-row="rowData">
+              <span>{{(row.currerntTotal / row.targetTotal) | percent}}</span>
+            </ng-template>
+          </p-column>
+        </p-dataTable>
+      </div>
+    </p-tabPanel>
+  </p-tabView>
+  <!-- End Tabs -->
   <div style="width:calc(30% - 15px); min-width:200px; display:inline-block;vertical-align:top; padding: 30px 0px;">
     <table class="dashboard-stats" style="margin:0 auto; text-align:center;">
       <tr>
@@ -40,8 +69,10 @@
   </div>
 </div>
 <!-- <div class="divSpacer"></div> -->
-<div>
+<!-- Moved to Tab -->
+<!-- <div>
   <h3 style="margin:0px 0px 10px 0px;">Current Progress:</h3>
+  <button pButton icon="fa-download"></button>
   <table class="center-boarder-table">
     <thead>
       <tr>
@@ -62,4 +93,4 @@
       </tr>
     </tbody>
   </table>
-</div>
+</div> -->
