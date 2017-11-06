@@ -1,9 +1,7 @@
 <div class="divSmallSpacer"></div>
-<div style="display:inline-block;vertical-align:top;">
-  <p-menu [model]="items"></p-menu>
-</div>
-<div style="display:inline-block;vertical-align:top;">
-  <div style="display:inline-block;vertical-align:top;padding:0px 20px;">
+<div class="divSpacer"></div>
+<div style="margin:0 auto;text-align:center;">
+  <!-- <div style="display:inline-block;vertical-align:top;padding:0px 20px;">
     <h2>Filters:</h2>
     <div style="padding:0px 10px;">
       <div>
@@ -25,13 +23,71 @@
         </div>
       </div>
     </div>
+  </div> -->
+  <div style="display:inline-block;width:600px;">
+    <h3 style="text-align:left;margin:2.5px 0px">Selected Province: {{selectedProvince}}</h3>
+    <span style="text-align:left;display:block;font-size:12px;padding:0px 2.5px;">*Double Click to Reset</span>
+    <app-d3 #zambiaChart id="d3Zambia" *ngIf="chartData" [data]="chartData" [name]="'d3Zambia'" [pointCoords]="pointCoords" (dblclick)="selectedProvince = 'All'"
+      (provinceClicked)="provinceClicked($event)"></app-d3>
   </div>
-  <div style="display:inline-block">
-    <app-d3 #zambiaChart id="d3Zambia" *ngIf="chartData" [data]="chartData" [name]="'d3Zambia'"></app-d3>
-  </div>
-  <div style="display:inline-block">
-    <!-- <app-d3 #zambiaChart id="d3Zambia" *ngIf="chartData2" [data]="chartData2" [name]="'d3Zambia'"></app-d3> -->
-    <!-- <p-gmap [options]="gmapOptions" [style]="{'width':'400px','height':'400px'}" ></p-gmap> -->
+  <div style="display:inline-block;vertical-align:top;">
+    <div class="divSpacer"></div>
+    <table class="dashboard-stats">
+      <tr>
+        <!-- <td (click)="navigateDetail('connections')"> -->
+        <td (click)="router.navigate(['bfgz-impact/connections'])" class="dashboard-cell">
+          <h3>Upgrades</h3>
+          <h2>4,267</h2>
+          <h5># of Upgrades</h5>
+        </td>
+        <td>
+          <h3>PAR30</h3>
+          <h2>18%</h2>
+          <h5>30+ Days Overdue</h5>
+        </td>
+        <td>
+          <h3>Sales per Seller</h3>
+          <h2>5,762</h2>
+          <h5>Avg # of ESS</h5>
+        </td>
+      </tr>
+      <tr>
+        <td (click)="router.navigate(['bfgz-impact/gender'])" class="dashboard-cell">
+          <h3>Defaults</h3>
+          <h2>1,345</h2>
+          <h5>ESS in Default</h5>
+        </td>
+        <td>
+          <h3>Load Capacity</h3>
+          <h2>58%</h2>
+          <h5>Avg. in Use</h5>
+        </td>
+        <td>
+          <h3>Microgrid++</h3>
+          <h2>11%</h2>
+          <h5>Above Assumbtions</h5>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h3>Productive</h3>
+          <h2>8%</h2>
+          <h5>of ESS</h5>
+        </td>
+        <td>
+          <h3>Tier 3</h3>
+          <h2>54%</h2>
+          <h5>of ESS</h5>
+        </td>
+        <td>
+          <h3>Microgrid Revenue</h3>
+          <h2>$54,000</h2>
+          <h5>Avg. Per Grid</h5>
+        </td>
+      </tr>
+    </table>
+    <p class="information-paragraph">*Click cells that light up as blue for more information.</p>
+    <!-- <p class="information-paragraph">*Cells that light up as blue when hovering provide more detail after clicking on the cell.</p> -->
   </div>
 
 </div>

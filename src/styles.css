@@ -96,6 +96,7 @@ svg.chart-content{
   border-collapse: collapse;
   /*border-radius: 10px;*/
   min-width:220px;
+  max-width: 250px;
 }
 
 .dashboard-stats h3{

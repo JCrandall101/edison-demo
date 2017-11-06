@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Router } from '@angular/router';
 import {AppService} from '../app.service';
 import {D3Component} from '../shared/d3/d3.component';
 import * as _ from 'underscore';
@@ -30,12 +31,13 @@ export class InternalDashboardComponent implements OnInit {
   slctdMapOption: 'All';
   selectedGenders=['Male','Female'];
   selectedTypes = ['SHS','ESS Microgrid','Microgrid'];
+  selectedProvince:string = 'All'
 
   // gmapOptions: any;
   // gmapOverlays: any[];
 
 
-  constructor(private appService:AppService) { }
+  constructor(private appService:AppService, private router:Router) { }
 
   ngOnInit() {
     this.items = [
@@ -118,6 +120,10 @@ export class InternalDashboardComponent implements OnInit {
   processTypeCheckBoxs(e){
     this.generateData();
     this.zambiaChart.updateChart();
+  }
+
+  provinceClicked(e){
+    this.selectedProvince = e.province.properties.CAPTION;
   }
 
 }
