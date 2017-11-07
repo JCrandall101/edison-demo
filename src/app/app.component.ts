@@ -1,4 +1,4 @@
-import { Component,OnInit, OnChanges, AfterViewChecked } from '@angular/core';
+import { Component,OnInit, OnChanges, AfterViewChecked, AfterViewInit } from '@angular/core';
 import {Router,Params,ActivatedRoute} from '@angular/router';
 
 import {Message} from 'primeng/components/common/api';
@@ -13,7 +13,7 @@ import * as _ from 'underscore';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit, OnChanges, AfterViewChecked {
+export class AppComponent implements OnInit, OnChanges, AfterViewChecked, AfterViewInit {
   title = 'EDISON';
 
   msgs:Message[];
@@ -65,6 +65,22 @@ export class AppComponent implements OnInit, OnChanges, AfterViewChecked {
   }
 
   ngOnChanges(){
+  }
+
+  ngAfterViewInit(){
+    window.onload = () => { this.setActive(); };
+    window.onmousemove = () => { this.setActive(); };
+    window.onmousedown = () => { this.setActive(); };
+    window.onclick = () => { this.setActive(); };
+    window.onscroll = () => { this.setActive(); };
+    window.onkeypress = () => { this.setActive(); };
+  }
+
+  setActive(){
+    if(this.authService.isLoggedIn){
+        console.log('setActive');
+        this.authService.resetTimeOut();
+    }
   }
 
   ngAfterViewChecked(){
